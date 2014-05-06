@@ -56,6 +56,7 @@ LEFT JOIN moneyers ON coins.moneyer = moneyers.id
 LEFT JOIN findofnotereasons ON finds.findofnotereason = findofnotereasons.id
 LEFT JOIN users ON users.id = finds.createdBy
 LEFT JOIN users AS users2 ON users2.id = finds.updatedBy
+LEFT JOIN users AS users3 ON user3.id = slides.createdBy
 LEFT JOIN materials AS mat ON finds.material1 = mat.id
 LEFT JOIN materials AS mat2 ON finds.material2 = mat2.id
 LEFT JOIN decmethods ON finds.decmethod = decmethods.id
@@ -132,7 +133,7 @@ coins.reeceID AS reeceID, coins.moneyer, moneyers.name AS moneyerName, coins.tri
 coins.categoryID as category, medievalcategories.category AS categoryTerm, coins.typeID as type,  medievaltypes.type AS typeTerm,
 coins.die_axis_measurement AS axis, coins.revtypeID as reverse, revtypes.type AS reverseType, coins.status, statuses.term AS statusTerm,
 CONCAT(geographyironage.region,' ',geographyironage.area) AS geography, coins.geographyID, 
-slides.imageID AS thumbnail, slides.filename, users.imagedir, licenseType.url AS imageCopyright,
+slides.imageID AS thumbnail, slides.filename, users3.imagedir, licenseType.url AS imageCopyright,
 finds.finderID, finds.recorderID, finds.identifier1ID AS identifierID, finds.identifier2ID, finders.fullname AS finder,
 primaries.fullname AS identifier, secondaries.fullname AS secondaryIdentifier, recorders.fullname AS recorder,
 rulers.nomismaID AS rulerNomisma, rulers.dbpedia AS rulerDbpedia, rulers.viaf as rulerViaf, rulers.bmID as rulerBM, 
