@@ -539,10 +539,7 @@
 	<field name="thickness" type="double" indexed="true" stored="true" />
 	<field name="length" type="double" indexed="true" stored="true" />
 	<field name="quantity" type="int" indexed="true" stored="true" />
-	<field name="hoard" type="int" indexed="true" stored="true" />
-	<field name="hID" type="int" indexed="true" stored="true" />
-	<field name="hoardName" type="string" indexed="true" stored="true" />
-	
+
 	<!-- Chronology metadata -->
 	<field name="broadperiod" type="string" indexed="true" stored="true" />
 	<field name="periodFrom" type="int" indexed="true" stored="true" />
@@ -551,12 +548,7 @@
 	<field name="periodToName" type="string" indexed="true" stored="true" />
 	
 	<!--   Linked data period identifiers -->
-	<field name="broadperiodEH" type="string" indexed="true" stored="true" />
-	<field name="broadperiodBM" type="int" indexed="true" stored="true" />
-	<field name="periodFromEH" type="string" indexed="true" stored="true" />
-	<field name="periodFromBM" type="int" indexed="true" stored="true" />
-	<field name="periodToEH" type="string" indexed="true" stored="true" />
-	<field name="periodToBM" type="int" indexed="true" stored="true" />
+
 	<field name="fromdate" type="int" indexed="true" stored="true" />
 	<field name="todate" type="int" indexed="true" stored="true" />
 	<field name="fromsubperiod" type="int" indexed="true" stored="true" />
@@ -666,7 +658,12 @@
 	<field name="geonamesID" type="int" indexed="true" stored="true" />
 	
 	<!--  Period linked data -->
-	
+     <field name="broadperiodEH" type="string" indexed="true" stored="true" />
+     <field name="broadperiodBM" type="int" indexed="true" stored="true" />
+     <field name="periodFromEH" type="string" indexed="true" stored="true" />
+     <field name="periodFromBM" type="int" indexed="true" stored="true" />
+     <field name="periodToEH" type="string" indexed="true" stored="true" />
+     <field name="periodToBM" type="int" indexed="true" stored="true" />
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
    <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
