@@ -761,7 +761,7 @@
 	<copyField source="classification" dest="text" />
 	<copyField source="subClassification" dest="text" />
 	<copyField source="cultureName" dest="text" />
-	<copyField source="material" dest="text" />
+	<copyField source="materialTerm" dest="text" />
 	<copyField source="currentLocation" dest="text" />
 	<copyField source="subsequentActionTerm" dest="text" />
 	<copyField source="musaccno" dest="text" />
