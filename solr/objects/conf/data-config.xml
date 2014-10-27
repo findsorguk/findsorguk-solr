@@ -29,7 +29,8 @@ finds.findofnote AS note, findofnotereasons.term as reasonTerm, finds.findofnote
 finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity, finds.hoard, finds.hoardID as hoardID, hoards.term AS hoardName,
 finds.broadperiod, finds.objdate1period AS periodFrom, p1.term AS periodFromName, finds.objdate2period AS periodTo, p2.term AS periodToName,
 finds.numdate1 AS fromdate, finds.numdate2 AS todate, finds.objdate1subperiod AS fromsubperiod, finds.objdate2subperiod AS tosubperiod,
-finds.datefound1, finds.datefound2, dq1.term as fromDateQualifier, dq2.term as toDateQualifier, sub1.term AS subperiodFrom, sub2.term AS subperiodTo,
+finds.datefound1, finds.datefound2, dq1.term as periodFromQualifier, dq2.term as periodToQualifier, dq3.term as fromDateQualifier, dq4.term as toDateQualifier,
+sub1.term AS subperiodFrom, sub2.term AS subperiodTo,
 finds.createdBy AS createdBy,  users.fullname AS creator, finds.created, finds.updated, finds.updatedBy, users2.fullname AS updater, finds.dbpediaSlug,
 coins.ruler_id AS ruler, coins.ruler2_id AS ruler2, rulers.issuer AS rulerName, r2.issuer AS secondaryRulerName,
 coins.denomination, denominations.denomination AS denominationName, coins.mint_id AS mint, mints.mint_name AS mintName,
@@ -99,6 +100,8 @@ LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
 LEFT JOIN osRegions ON findspots.regionID = osRegions.osID
 LEFT JOIN datequalifiers AS dq1 ON dq1.id = finds.objdate1cert
 LEFT JOIN datequalifiers AS dq2 ON dq2.id = finds.objdate1cert
+LEFT JOIN datequalifers AS dq3 ON dq3.id = finds.numdate1qual
+LEFT JOIN datequalifier AS dq4 on dq4.id = finds.numdat1qual
 LEFT JOIN statuses ON coins.status = statuses.id
 LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
 "
@@ -401,6 +404,8 @@ OR findspots.updated > '${dataimporter.last_index_time}'
             <field column="datefound2" name="datefound2"/>
             <field column="fromDateQualifier" name="fromDateQualifier"/>
             <field column="toDateQualifier" name="toDateQualifier"/>
+            <field column="periodToQualifier" name="periodToQualifier" />
+            <field column="periodFromQualifier"
             <field column="subperiodTo" name="subperiodTo"/>
             <field column="subperiodFrom" name="subperiodFrom"/>
 
@@ -443,7 +448,7 @@ OR findspots.updated > '${dataimporter.last_index_time}'
             <field column="category" name="category"/>
             <field column="categoryTerm" name="categoryTerm"/>
             <field column="type" name="type"/>
-            <field column="typeTerm" name="typeterm"/>
+            <field column="typeTerm" name="typeTerm"/>
             <field column="axis" name="axis"/>
             <field column="reverse" name="reverse"/>
             <field column="reverseType" name="reverseType"/>
