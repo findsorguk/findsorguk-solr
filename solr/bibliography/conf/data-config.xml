@@ -1,8 +1,9 @@
 <dataConfig>
-<dataSource type='JdbcDataSource' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://localhost/db' user=' ' password='' tinyInt1isBit='false' />
-	<document name="content">
-		<entity name="content" transformer="HTMLStripTransformer"
-		query="
+    <dataSource type='JdbcDataSource' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://localhost/db' user=' '
+                password='' tinyInt1isBit='false'/>
+    <document name="content">
+        <entity name="content" transformer="HTMLStripTransformer"
+                query="
 		SELECT
 		CONCAT('biblio-',finds.id) AS identifier,
 		finds.old_findID,
@@ -26,20 +27,20 @@
 		LEFT JOIN users ON users.id = finds.createdBy
 		WHERE finds.id IS NOT NULL
 		"
-		>       
-		<field column="identifier" name="identifier" />
-		<field column="id" name="id" />
-		<field column="title" name="title" />
-		<field column="objecttype" name="objecttype" />
-		<field column="broadperiod" name="broadperiod" />
-		<field column="county" name="county" />
-		<field column="old_findID" name="old_findID" />
-		<field column="authors" name="authors" />
-		<field column="thumbnail" name="thumbnail" />
-		<field column="filename" name="filename" />
-		<field column="imagedir" name="imagedir" />
-		<field column="pubID" name="pubID" />
-		<field column="workflow" name="workflow" />
-	</entity>
-	</document>
+                >
+            <field column="identifier" name="identifier"/>
+            <field column="id" name="id"/>
+            <field column="title" name="title"/>
+            <field column="objecttype" name="objecttype"/>
+            <field column="broadperiod" name="broadperiod"/>
+            <field column="county" name="county"/>
+            <field column="old_findID" name="old_findID"/>
+            <field column="authors" name="authors"/>
+            <field column="thumbnail" name="thumbnail"/>
+            <field column="filename" name="filename"/>
+            <field column="imagedir" name="imagedir"/>
+            <field column="pubID" name="pubID"/>
+            <field column="workflow" name="workflow"/>
+        </entity>
+    </document>
 </dataConfig>
