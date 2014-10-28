@@ -26,7 +26,7 @@ finds.preservation, preservations.term AS preservationTerm, preservations.bmID A
 discmethods.method AS discoveryMethod, EXTRACT(YEAR FROM datefound1) AS discovered, finds.subs_action as subsequentAction,
 subsequentActions.action as subsequentActionTerm, finds.completeness, completeness.term AS completenessTerm,
 finds.findofnote AS note, findofnotereasons.term as reasonTerm, finds.findofnotereason AS reason, finds.width,
-finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity, finds.hoard, finds.hoardID as hoardID, hoards.term AS hoardName,
+finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity,
 finds.broadperiod, finds.objdate1period AS periodFrom, p1.term AS periodFromName, finds.objdate2period AS periodTo, p2.term AS periodToName,
 finds.numdate1 AS fromdate, finds.numdate2 AS todate, finds.objdate1subperiod AS fromsubperiod, finds.objdate2subperiod AS tosubperiod,
 finds.datefound1, finds.datefound2, dq1.term as periodFromQualifier, dq2.term as periodToQualifier, dq3.term as fromDateQualifier, dq4.term as toDateQualifier,
@@ -57,7 +57,7 @@ LEFT JOIN moneyers ON coins.moneyer = moneyers.id
 LEFT JOIN findofnotereasons ON finds.findofnotereason = findofnotereasons.id
 LEFT JOIN users ON users.id = finds.createdBy
 LEFT JOIN users AS users2 ON users2.id = finds.updatedBy
-LEFT JOIN users AS users3 ON user3.id = slides.createdBy
+LEFT JOIN users AS users3 ON users3.id = slides.createdBy
 LEFT JOIN materials AS mat ON finds.material1 = mat.id
 LEFT JOIN materials AS mat2 ON finds.material2 = mat2.id
 LEFT JOIN decmethods ON finds.decmethod = decmethods.id
@@ -86,7 +86,6 @@ LEFT JOIN ironagetribes ON coins.tribe = ironagetribes.id
 LEFT JOIN medievalcategories ON medievalcategories.id = coins.categoryID
 LEFT JOIN medievaltypes ON medievaltypes.id = coins.typeID
 LEFT JOIN geographyironage ON geographyironage.id = coins.geographyID
-LEFT JOIN hoards ON finds.hoardID = hoards.id
 LEFT JOIN subsequentActions ON finds.subs_action = subsequentActions.id
 LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
 LEFT JOIN people AS finders ON finds.finderID = finders.secuid
@@ -100,8 +99,8 @@ LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
 LEFT JOIN osRegions ON findspots.regionID = osRegions.osID
 LEFT JOIN datequalifiers AS dq1 ON dq1.id = finds.objdate1cert
 LEFT JOIN datequalifiers AS dq2 ON dq2.id = finds.objdate1cert
-LEFT JOIN datequalifers AS dq3 ON dq3.id = finds.numdate1qual
-LEFT JOIN datequalifier AS dq4 on dq4.id = finds.numdat1qual
+LEFT JOIN datequalifiers AS dq3 ON dq3.id = finds.numdate1qual
+LEFT JOIN datequalifiers AS dq4 on dq4.id = finds.numdat1qual
 LEFT JOIN statuses ON coins.status = statuses.id
 LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
 "
@@ -120,10 +119,10 @@ finds.curr_loc AS currentLocation, finds.musaccno, finds.rally, findspots.old_fi
 finds.rallyID,rallies.rally_name AS rallyName, finds.decstyle, decstyles.term AS decstyleTerm, finds.manmethod AS manufacture,
 manufactures.term AS manufactureTerm, manufactures.bmID AS bmManufacture, surftreatments.term AS treatment, surftreatments.bmID AS bmTreatment, finds.surftreat AS treatment, 
 finds.preservation, preservations.term AS preservationTerm, preservations.bmID AS bmPreservation, finds.discmethod as discovery,
-discmethods.method AS discoveryMethod, EXTRACT(YEAR FROM datefound1) AS discovered, finds.subs_action as subsequentAction,
+discmethods.method AS discoveryMethod, EXTRACT(YEAR FROM finds.datefound1) AS discovered, finds.subs_action as subsequentAction,
 subsequentActions.action as subsequentActionTerm, finds.completeness, completeness.term AS completenessTerm,
 finds.findofnote AS note, findofnotereasons.term as reasonTerm, finds.findofnotereason AS reason, finds.width,
-finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity, finds.hoard, finds.hoardID as hoardID, hoards.term AS hoardName,
+finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity,
 finds.broadperiod, finds.objdate1period AS periodFrom, p1.term AS periodFromName, finds.objdate2period AS periodTo, p2.term AS periodToName,
 finds.numdate1 AS fromdate, finds.numdate2 AS todate, finds.objdate1subperiod AS fromsubperiod, finds.objdate2subperiod AS tosubperiod,
 finds.datefound1, finds.datefound2, dq1.term as fromDateQualifier, dq2.term as toDateQualifier, sub1.term AS subperiodFrom, sub2.term AS subperiodTo,
@@ -181,7 +180,6 @@ LEFT JOIN ironagetribes ON coins.tribe = ironagetribes.id
 LEFT JOIN medievalcategories ON medievalcategories.id = coins.categoryID
 LEFT JOIN medievaltypes ON medievaltypes.id = coins.typeID
 LEFT JOIN geographyironage ON geographyironage.id = coins.geographyID
-LEFT JOIN hoards ON finds.hoardID = hoards.id
 LEFT JOIN subsequentActions ON finds.subs_action = subsequentActions.id
 LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
 LEFT JOIN people AS finders ON finds.finderID = finders.secuid
@@ -220,7 +218,7 @@ finds.preservation, preservations.term AS preservationTerm, preservations.bmID A
 discmethods.method AS discoveryMethod, EXTRACT(YEAR FROM datefound1) AS discovered, finds.subs_action as subsequentAction,
 subsequentActions.action as subsequentActionTerm, finds.completeness, completeness.term AS completenessTerm,
 finds.findofnote AS note, findofnotereasons.term as reasonTerm, finds.findofnotereason AS reason, finds.width,
-finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity, finds.hoard, finds.hoardID as hoardID, hoards.term AS hoardName,
+finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity,
 finds.broadperiod, finds.objdate1period AS periodFrom, p1.term AS periodFromName, finds.objdate2period AS periodTo, p2.term AS periodToName,
 finds.numdate1 AS fromdate, finds.numdate2 AS todate, finds.objdate1subperiod AS fromsubperiod, finds.objdate2subperiod AS tosubperiod,
 finds.datefound1, finds.datefound2, dq1.term as fromDateQualifier, dq2.term as toDateQualifier, sub1.term AS subperiodFrom, sub2.term AS subperiodTo,
@@ -278,7 +276,6 @@ LEFT JOIN ironagetribes ON coins.tribe = ironagetribes.id
 LEFT JOIN medievalcategories ON medievalcategories.id = coins.categoryID
 LEFT JOIN medievaltypes ON medievaltypes.id = coins.typeID
 LEFT JOIN geographyironage ON geographyironage.id = coins.geographyID
-LEFT JOIN hoards ON finds.hoardID = hoards.id
 LEFT JOIN subsequentActions ON finds.subs_action = subsequentActions.id
 LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
 LEFT JOIN people AS finders ON finds.finderID = finders.secuid
@@ -385,9 +382,6 @@ OR findspots.updated > '${dataimporter.last_index_time}'
             <field column="quantity" name="quantity"/>
             <field column="cultureName" name="cultureName"/>
             <field column="treasure" name="treasure"/>
-            <field column="hoardID" name="hoardID"/>
-            <field column="hoardName" name="hoardName"/>
-            <field column="hoard" name="hoard"/>
 
 
             <!-- Chronology metadata -->
