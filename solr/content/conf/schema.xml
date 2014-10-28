@@ -940,6 +940,10 @@ be used for benchmarking.  To improve performance one could
 
             <field name="updated" type="date" indexed="true" stored="true" />
 
+            <field name="createdBy" type="string" indexed="true" stored="true" />
+
+            <field name="updatedBy" type="string" indexed="true" stored="true" />
+
             <field name="publishState" type="int" indexed="true" stored="true" />
 
             <field name="type" type="string" indexed="true" stored="true" />

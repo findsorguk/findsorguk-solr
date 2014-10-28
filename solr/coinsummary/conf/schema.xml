@@ -537,7 +537,7 @@
     <!-- Object meta data -->
 
 	<copyField source="old_findID" dest="text" />
-	
+
 
 	<!-- Case insensitivity -->
 	<copyField source="objecttype" dest="objectType" />

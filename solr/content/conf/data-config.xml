@@ -1,22 +1,22 @@
 <dataConfig>
 
-      <dataSource type="JdbcDataSource"
+    <dataSource type="JdbcDataSource"
 
-   driver="com.mysql.jdbc.Driver"
+                driver="com.mysql.jdbc.Driver"
 
-   url="jdbc:mysql://localhost/{db}”
+                url="jdbc:mysql://localhost/{db}”
 
    user=""
 
-   password=""
+    password=""
 
-   tinyInt1isBit="false"/>
+    tinyInt1isBit="false"/>
 
-      <document name="content">
+    <document name="content">
 
         <entity name="content" transformer="HTMLStripTransformer"
 
-query="
+                query="
 
 SELECT
 
@@ -44,41 +44,40 @@ FROM content
 
 "
 
->       
+                >
 
-            <field column="identifier" name="identifier" />
+            <field column="identifier" name="identifier"/>
 
-            <field column="id" name="id" />
+            <field column="id" name="id"/>
 
-        <field column="body" name="body" stripHTML="true"/>
+            <field column="body" name="body" stripHTML="true"/>
 
-          <field column="excerpt" name="excerpt" stripHTML="true" />
+            <field column="excerpt" name="excerpt" stripHTML="true"/>
 
-          <field column="place" name="place" />
+            <field column="place" name="place"/>
 
-          <field column="section" name="section" />
+            <field column="section" name="section"/>
 
-          <field column="keywords" name="keywords" />
+            <field column="keywords" name="keywords"/>
 
-          <field column="created" name="created" />
+            <field column="created" name="created"/>
 
-          <field column="updated" name="updated" />
+            <field column="updated" name="updated"/>
 
-          <field column="slug" name="slug" />
+            <field column="slug" name="slug"/>
 
-          <field column="woeid" name="woeid" />
+            <field column="woeid" name="woeid"/>
 
-          <field column="publishState" name="publishState" />
+            <field column="publishState" name="publishState"/>
 
-          <field column="type" name="type" />
+            <field column="type" name="type"/>
 
-            </entity>
+        </entity>
 
-           
 
-<entity name="news" transformer="HTMLStripTransformer"
+        <entity name="news" transformer="HTMLStripTransformer"
 
-query="
+                query="
 
 SELECT
 
@@ -112,53 +111,61 @@ woeid,
 
 publish_state AS publishState,
 
-'news' AS type
+'news' AS type,
+users1.fullname AS createdBy,
+
+users2.fullname AS updatedBy
 
 FROM news
+LEFT JOIN users AS users1 ON users1.id = news.createdBy
+LEFT JOIN users AS users2 ON users2.id = news.updatedBy
 
 "
 
->       
+                >
 
-            <field column="identifier" name="identifier" />
+            <field column="identifier" name="identifier"/>
 
-            <field column="id" name="id" />
+            <field column="id" name="id"/>
 
-        <field column="body" name="body" stripHTML="true"/>
+            <field column="body" name="body" stripHTML="true"/>
 
-          <field column="excerpt" name="excerpt" stripHTML="true" />
+            <field column="excerpt" name="excerpt" stripHTML="true"/>
 
-          <field column="place" name="place" />
+            <field column="place" name="place"/>
 
-          <field column="coordinates" name="coordinates" />
+            <field column="coordinates" name="coordinates"/>
 
-          <field column="latitude" name="latitude" />
+            <field column="latitude" name="latitude"/>
 
-          <field column="longitude" name="longitude" />
+            <field column="longitude" name="longitude"/>
 
-          <field column="section" name="section" />
+            <field column="section" name="section"/>
 
-          <field column="keywords" name="keywords" />
+            <field column="keywords" name="keywords"/>
 
-          <field column="created" name="created" />
+            <field column="created" name="created"/>
 
-          <field column="updated" name="updated" />
+            <field column="updated" name="updated"/>
 
-          <field column="slug" name="slug" />
+            <field column="slug" name="slug"/>
 
-          <field column="woeid" name="woeid" />
+            <field column="woeid" name="woeid"/>
 
-          <field column="publishState" name="publishState" />
+            <field column="publishState" name="publishState"/>
 
-          <field column="type" name="type" />
+            <field column="type" name="type"/>
 
-            </entity>
+            <field column="createdBy" name="createdBy"/>
 
-           
+            <field column="updatedBy" name="updatedBy"
 
-<entity name="help" transformer="HTMLStripTransformer"
+        </entity>
 
-query="
+
+        <entity name="help" transformer="HTMLStripTransformer"
+
+                query="
 
 SELECT
 
@@ -186,41 +193,40 @@ FROM help
 
 "
 
-> 
+                >
 
-      
 
-            <field column="identifier" name="identifier" />
+            <field column="identifier" name="identifier"/>
 
-        <field column="id" name="id" />
+            <field column="id" name="id"/>
 
-        <field column="body" name="body" stripHTML="true"/>
+            <field column="body" name="body" stripHTML="true"/>
 
-          <field column="excerpt" name="excerpt" stripHTML="true" />
+            <field column="excerpt" name="excerpt" stripHTML="true"/>
 
-          <field column="place" name="place" />
+            <field column="place" name="place"/>
 
-          <field column="section" name="section" />
+            <field column="section" name="section"/>
 
-          <field column="keywords" name="keywords" />
+            <field column="keywords" name="keywords"/>
 
-          <field column="created" name="created" />
+            <field column="created" name="created"/>
 
-          <field column="updated" name="updated" />
+            <field column="updated" name="updated"/>
 
-          <field column="slug" name="slug" />
+            <field column="slug" name="slug"/>
 
-          <field column="woeid" name="woeid" />
+            <field column="woeid" name="woeid"/>
 
-          <field column="publishState" name="publishState" />
+            <field column="publishState" name="publishState"/>
 
-          <field column="type" name="type" />
+            <field column="type" name="type"/>
 
-            </entity>
+        </entity>
 
-<entity name="staff" transformer="HTMLStripTransformer"
+        <entity name="staff" transformer="HTMLStripTransformer"
 
-query="
+                query="
 
 SELECT
 
@@ -256,43 +262,42 @@ WHERE alumni = '1'
 
 "
 
-> 
+                >
 
-            <field column="identifier" name="identifier" />
+            <field column="identifier" name="identifier"/>
 
-        <field column="id" name="id" />
+            <field column="id" name="id"/>
 
-        <field column="body" name="body" stripHTML="true"/>
+            <field column="body" name="body" stripHTML="true"/>
 
-        <field column="title=" name="title" />
+            <field column="title=" name="title"/>
 
-          <field column="section" name="section" />
+            <field column="section" name="section"/>
 
-          <field column="created" name="created" />
+            <field column="created" name="created"/>
 
-          <field column="updated" name="updated" />
+            <field column="updated" name="updated"/>
 
-          <field column="woeid" name="woeid" />
+            <field column="woeid" name="woeid"/>
 
-          <field column="publishState" name="publishState" />
+            <field column="publishState" name="publishState"/>
 
-          <field column="type" name="type" />
+            <field column="type" name="type"/>
 
-            <field column="coordinates" name="coordinates" />
+            <field column="coordinates" name="coordinates"/>
 
-            <field column="latitude" name="latitude" />
+            <field column="latitude" name="latitude"/>
 
-            <field column="longitude" name="longitude" />
+            <field column="longitude" name="longitude"/>
 
-            <field column="place" name="place" />
+            <field column="place" name="place"/>
 
-            </entity>
+        </entity>
 
-           
 
-<entity name="research" transformer="HTMLStripTransformer"
+        <entity name="research" transformer="HTMLStripTransformer"
 
-query="
+                query="
 
 SELECT
 
@@ -320,33 +325,32 @@ LEFT JOIN projecttypes ON researchprojects.level = projecttypes.id
 
 "
 
-> 
+                >
 
-            <field column="identifier" name="identifier" />
+            <field column="identifier" name="identifier"/>
 
-        <field column="id" name="id" />
+            <field column="id" name="id"/>
 
-        <field column="body" name="body" stripHTML="true"/>
+            <field column="body" name="body" stripHTML="true"/>
 
-          <field column="section" name="section" />
+            <field column="section" name="section"/>
 
-          <field column="created" name="created" />
+            <field column="created" name="created"/>
 
-          <field column="updated" name="updated" />
+            <field column="updated" name="updated"/>
 
-          <field column="type" name="type" />
+            <field column="type" name="type"/>
 
-          <field column="slug" name="slug" />
+            <field column="slug" name="slug"/>
 
-          <field column="title" name="title" />
+            <field column="title" name="title"/>
 
-            </entity>
+        </entity>
 
-           
 
-<entity name="events" transformer="HTMLStripTransformer"
+        <entity name="events" transformer="HTMLStripTransformer"
 
-query="
+                query="
 
 SELECT
 
@@ -382,39 +386,39 @@ LEFT JOIN eventtypes ON events.eventType = eventtypes.id
 
 "
 
-> 
+                >
 
-            <field column="identifier" name="identifier" />
+            <field column="identifier" name="identifier"/>
 
-        <field column="id" name="id" />
+            <field column="id" name="id"/>
 
-        <field column="body" name="body" stripHTML="true"/>
+            <field column="body" name="body" stripHTML="true"/>
 
-          <field column="section" name="section" />
+            <field column="section" name="section"/>
 
-          <field column="created" name="created" />
+            <field column="created" name="created"/>
 
-          <field column="updated" name="updated" />
+            <field column="updated" name="updated"/>
 
-          <field column="type" name="type" />
+            <field column="type" name="type"/>
 
-          <field column="slug" name="slug" />
+            <field column="slug" name="slug"/>
 
-          <field column="title" name="title" />
+            <field column="title" name="title"/>
 
-          <field column="coordinates" name="coordinates" />
+            <field column="coordinates" name="coordinates"/>
 
-          <field column="place" name="place" />
+            <field column="place" name="place"/>
 
-          <field column="latitude" name="latitude" />
+            <field column="latitude" name="latitude"/>
 
-          <field column="longitude" name="longitude" />
+            <field column="longitude" name="longitude"/>
 
-            </entity>
+        </entity>
 
-      <entity name="vacancies" transformer="HTMLStripTransformer"
+        <entity name="vacancies" transformer="HTMLStripTransformer"
 
-query="
+                query="
 
 SELECT
 
@@ -440,30 +444,29 @@ LEFT JOIN staffregions ON vacancies.regionID = staffregions.regionID
 
 "
 
-> 
+                >
 
-            <field column="identifier" name="identifier" />
+            <field column="identifier" name="identifier"/>
 
-        <field column="id" name="id" />
+            <field column="id" name="id"/>
 
-        <field column="body" name="body" stripHTML="true"/>
+            <field column="body" name="body" stripHTML="true"/>
 
-          <field column="section" name="section" />
+            <field column="section" name="section"/>
 
-          <field column="created" name="created" />
+            <field column="created" name="created"/>
 
-          <field column="updated" name="updated" />
+            <field column="updated" name="updated"/>
 
-          <field column="type" name="type" />
+            <field column="type" name="type"/>
 
-          <field column="slug" name="slug" />
+            <field column="slug" name="slug"/>
 
-          <field column="title" name="title" />
+            <field column="title" name="title"/>
 
-            </entity>  
+        </entity>
 
     </document>
 
-   
 
 </dataConfig>
