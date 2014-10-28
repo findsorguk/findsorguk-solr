@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<solr persistent="true" sharedLib="/var/solr/lib">
+        <!-- OSX sharedLib="/usr/local/apache-tomcat-7.0.55/lib"
+        LINUX sharedLib="/var/solr/lib" -->
+<solr persistent="true" sharedLib="/usr/local/apache-tomcat-7.0.55/lib">
     <cores defaultCoreName="objects" adminPath="/admin/cores" shareSchema="false"
            zkClientTimeout="${zkClientTimeout:15000}" hostPort="8080" hostContext="solr">
         <core loadOnStartup="true" instanceDir="objects/" transient="false" name="objects" dataDir=" data"/>
