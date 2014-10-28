@@ -81,9 +81,9 @@ FROM content
 
 SELECT
 
-CONCAT('news-',id) AS identifier,
+CONCAT('news-',news.id) AS identifier,
 
-id,
+news.id,
 
 title,
 
@@ -122,7 +122,9 @@ users1.fullname AS createdBy,
 users2.fullname AS updatedBy
 
 FROM news
+
 LEFT JOIN users AS users1 ON users1.id = news.createdBy
+
 LEFT JOIN users AS users2 ON users2.id = news.updatedBy
 
 "
