@@ -1,6 +1,10 @@
 <dataConfig>
-    <dataSource type='JdbcDataSource' driver='com.mysql.jdbc.Driver' url='jdbc:mysql://localhost/db' user=' '
-                password='' tinyInt1isBit='false'/>
+    <dataSource type="JdbcDataSource"
+                driver="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://localhost/db"
+                user=""
+                password=""
+                tinyInt1isBit="false"/>
     <document name="content">
         <entity name="content" transformer="HTMLStripTransformer"
                 query="

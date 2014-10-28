@@ -1,14 +1,14 @@
 <dataConfig>
-	<dataSource type="JdbcDataSource"
-   driver="com.mysql.jdbc.Driver"
-   batchSize="-1"
-   url="jdbc:mysql://localhost/{db}”
-   user=""
-   password=""
-   tinyInt1isBit="false"/>
-	<document name="content">
+    <dataSource type="JdbcDataSource"
+                driver="com.mysql.jdbc.Driver"
+                batchSize="-1"
+                url="jdbc:mysql://localhost/{db}"
+                user=""
+                password=""
+                tinyInt1isBit="false"/>
+    <document name="content">
         <entity name="node" transformer="HTMLStripTransformer"
-query="
+                query="
 SELECT
 DISTINCT(finds.id) as id, CONCAT('finds-',finds.id) AS findIdentifier, finds.old_findID, finds.secuid,
 findspots.county, findspots.district, findspots.parish, findspots.knownas, osRegions.label as regionName,
@@ -102,7 +102,7 @@ LEFT JOIN datequalifiers AS dq2 ON dq2.id = finds.objdate1cert
 LEFT JOIN statuses ON coins.status = statuses.id
 LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
 "
-deltaImportQuery="
+                deltaImportQuery="
 SELECT
 DISTINCT(finds.id) as id, CONCAT('finds-',finds.id) AS findIdentifier, finds.old_findID, finds.secuid,
 findspots.county, findspots.district, findspots.parish, findspots.knownas, osRegions.label as regionName,
@@ -199,7 +199,7 @@ OR finds.updated > '${dataimporter.last_index_time}'
 OR findspots.updated > '${dataimporter.last_index_time}'
 "
 
-deltaQuery="
+                deltaQuery="
 SELECT
 DISTINCT(finds.id) as id, CONCAT('finds-',finds.id) AS findIdentifier, finds.old_findID, finds.secuid,
 findspots.county, findspots.district, findspots.parish, findspots.knownas, osRegions.label as regionName,
@@ -296,218 +296,218 @@ OR finds.updated > '${dataimporter.last_index_time}'
 OR findspots.updated > '${dataimporter.last_index_time}'
 "
 
->
-	<!--  Identifiers -->
-    <field column="findIdentifier" name="findIdentifier" />
-    <field column="id" name="id" />
-    <field column="old_findID" name="old_findID" />
-    <field column="secuid" name="secuid" />
-     
-    <!--  Spatial metadata -->
-    <field column="county" name="county" />
-    <field column="district" name="district" />
-    <field column="parish" name="parish" />
-    <field column="knownas" name="knownas" />
-    <field column="regionName" name="regionName" />
-    <field column="Findspotcode" name="Findspotcode" />
-    
-    <!--  Spatial coordinates  -->
-    <field column="fourFigure" name="fourFigure" />
-    <field column="gridref" name="gridref" />
-    <field column="geohash" name="geohash" />
-    <field column="latitude" name="latitude" />
-    <field column="longitude" name="longitude" />
-    <field column="elevation" name="elevation" />
-   	<field column="easting" name="easting" />
-    <field column="northing" name="northing" /> 
-    <field column="gridSource" name="gridSource" />
-    <field column="fourFigureLat" name="fourFigureLat" />
-    <field column="fourFigureLon" name="fourFigureLon" />
-    <field column="precision" name="precision" />
-    <field column="accuracy" name="accuracy" />
-    <field column="coordinates" name="coordinates" />
-    
-    <!--  Object metadata -->
-    <field column="institution" name="institution" />
-    <field column="notes" name="notes" stripHTML="true"/>
-    <field column="objecttype" name="objecttype" />
-   	<field column="smrRef" name="smrRef" />
-    <field column="otherRef" name="otherRef" />
-    <field column="culture" name="culture" />
-    <field column="inscription" name="inscription" />
-    <field column="classification" name="classification" />
-    <field column="subClassification" name="subClassification" />
-    <field column="TID" name="TID" />
-    <field column="description" name="description" stripHTML="true"/>
-    <field column="workflow" name="workflow" />
-    <field column="material" name="material" />
-    <field column="materialTerm" name="materialTerm" />
-    <field column="primaryMaterialBM" name="primaryMaterialBM" />
-    <field column="secondaryMaterial" name="secondaryMaterial" />
-    <field column="secondaryMaterialTerm" name="secondaryMaterialTerm" />
-    <field column="secondaryMaterialBM" name="secondaryMaterialBM" />
-    <field column="currentLocation" name="currentLocation" />
-   	<field column="musaccno" name="musaccno" />
-    <field column="rally" name="rally" />
-    <field column="rallyID" name="rallyID" />
-    <field column="rallyName" name="rallyName" />
-    <field column="decstyle" name="decstyle" />
-    <field column="decstyleTerm" name="decstyleTerm" />
-    <field column="manufacture" name="manufacture" />
-    <field column="manufactureTerm" name="manufactureTerm" />
-    <field column="bmManufacture" name="bmManufacture" />
-	<field column="treatment" name="surface" />
-    <field column="treatment" name="treatment" /> 
-    <field column="treatmentTerm" name="treatmentTerm" />
-    <field column="bmTreatment" name="bmTreatment" />
-    <field column="preservation" name="preservation" />
-    <field column="preservationTerm" name="preservationTerm" />
-    <field column="bmPreservation" name="bmPreservation" />
-    <field column="discovery" name="discovery" />
-    <field column="discoveryMethod" name="discoveryMethod" />
-    <field column="discovered" name="discovered" />
-	<field column="subsequentAction" name="subsequentAction" />
-    <field column="subsequentActionTerm" name="subsequentActionTerm" />
-    <field column="completeness" name="completeness" />
-    <field column="completenessTerm" name="completenessTerm" />
-    <field column="note" name="note" />
-    <field column="reason" name="reason" />
-    <field column="reasonTerm" name="reasonTerm" />
-    <field column="width" name="width" />
-    <field column="height" name="height" />
-    <field column="diameter" name="diameter" />
-    <field column="thickness" name="thickness" />
-    <field column="length" name="length" />
-    <field column="weight" name="weight" />
-    <field column="quantity" name="quantity" />
-    <field column="cultureName" name="cultureName" />
-    <field column="treasure" name="treasure" />
-    <field column="hoardID" name="hoardID" />
-    <field column="hoardName" name="hoardName" />
-    <field column="hoard" name="hoard" />
-    
-    
-    <!-- Chronology metadata -->
-    <field column="broadperiod" name="broadperiod" />
-    <field column="periodFrom" name="periodFrom" />
-    <field column="periodFromName" name="periodFromName" />
-    <field column="periodTo" name="periodTo" />
-    <field column="periodToName" name="periodToName" />
-    <field column="fromdate" name="fromdate" />
-    <field column="todate" name="todate" />
-    <field column="fromsubperiod" name="fromsubperiod" />
-    <field column="tosubperiod" name="tosubperiod" />
-    <field column="datefound1" name="datefound1" />
-    <field column="datefound2" name="datefound2" />
-    <field column="fromDateQualifier" name="fromDateQualifier" />
-    <field column="toDateQualifier" name="toDateQualifier" />
-    <field column="subperiodTo" name="subperiodTo" />
-    <field column="subperiodFrom" name="subperiodFrom" />
-    
-    <!--  Admin metadata --> 
-    <field column="createdBy" name="createdBy" />
-    <field column="created" name="created" />
-    <field column="creator" name="creator" />
-    <field column="updated" name="updated" />
-    <field column="updatedBy" name="updatedBy" />
-    <field column="updater" name="updater" />
-    <field column="dbpediaSlug" name="dbpediaSlug" />
-    
-    <!--  Numismatic metadata -->
-    <field column="ruler" name="ruler" />
-    <field column="ruler2" name="ruler2" />
-    <field column="rulerName" name="rulerName" />
-    <field column="secondaryRulerName" name="secondaryRulerName" />
-    <field column="denomination" name="denomination" />
-    <field column="denominationName" name="denominationName" />
-    <field column="mint" name="mint" />
-    <field column="mintName" name="mintName" />
-    <field column="obverseDescription" name="obverseDescription" stripHTML="true"/>
-    <field column="reverseDescription" name="reverseDescription" stripHTML="true"/>
-    <field column="obverseLegend" name="obverseLegend" />
-    <field column="reverseLegend" name="reverseLegend" />
-    <field column="mintmark" name="mintmark" />
-    <field column="cciNumber" name="cciNumber" />
-    <field column="mackType" name="mackType" />
-    <field column="bmcType" name="bmcType" />
-    <field column="allentype" name="allenType" />
-    <field column="abcType" name="abcType" />
-    <field column="vaType" name="vaType" />
-    <field column="reeceID" name="reeceID" />
-  	<field column="geography" name="geography" />
-    <field column="geographyID" name="geographyID" />
-    <field column="moneyer" name="moneyer" />
-    <field column="moneyerName" name="moneyerName" />
-    <field column="tribe" name="tribe" />
-    <field column="tribeName" name="tribeName" />
-    <field column="category" name="category" />
-    <field column="categoryTerm" name="categoryTerm" />
-    <field column="type" name="type" />
-    <field column="typeTerm" name="typeterm" />
-    <field column="axis" name="axis" />
-    <field column="reverse" name="reverse" />
-    <field column="reverseType" name="reverseType" />
-    <field column="status" name="status" />
-    <field column="statusTerm" name="statusTerm" />
-    
-    <!--  Image data -->
-    <field column="thumbnail" name="thumbnail" />
-    <field column="filename" name="filename" />
-    <field column="imagedir" name="imagedir" />
-    
-    <!--  Personal metadata -->
-    <field column="finder" name="finder" />
-    <field column="finderID" name="finderID" />
-    <field column="recorder" name="recorder" />
-    <field column="recorderID" name="recorderID" />
-    <field column="identifier" name="identifier" />
-    <field column="identifierID" name="identifierID" />
-    <field column="secondaryIdentifier" name="secondaryIdentifier" />
-    <field column="identifer2ID" name="identifier2ID" />
-    
-    <!--  Numismatic linked data fields -->
-    <field column="rulerNomisma" name="rulerNomisma" />
-    <field column="rulerDbpedia" name="rulerDbpedia" />
-    <field column="rulerViaf" name="rulerViaf" />
-    <field column="rulerBM" name="rulerBM" />
-    <field column="moneyerDbpedia" name="moneyerDbpedia" />
-    <field column="moneyerViaf" name="moneyerViaf" />
-    <field column="moneyerBM" name="moneyerBM" />
-    <field column="bmCultureID" name="bmCultureID" />
-    <field column="bmTribeID" name="bmTribeID" />
-    
-    <!--  Mint linked data fields -->
-    <field column="nomismaMintID" name="nomismaMintID" />
-    <field column="mintWoeid" name="mintWoeid" />
-    <field column="mintGeonamesID" name="mintGeonamesID" />
-    <field column="mintBM" name="mintBM" />
-	<field column="pleiadesID" name="pleiadesID" />
-	
-	<!--  Denomination linked data -->
-	<field column="nomismaDenominationID" name="nomismaDenomination" />
-	<field column="denominationBM" name="denominationBM" />
-	<field column="denominationDbpedia" name="denominationDbpedia"/>
-    
-    <!--  Linked data identifiers for Geodata -->
-    <field column="regionID" name="regionID" />
-    <field column="countyID" name="countyID" />
-    <field column="districtID" name="districtID" />
-    <field column="parishID" name="parishID" />
-    <field column="woeid" name="woeid" />
-    <field column="countyType" name="countyType" />
-    <field column="districtType" name="districtType" />
-    <field column="parishType" name="parishType" />
-    <field column="geonamesID" name="geonamesID" />
-    
-    <!-- Period linked data identifiers -->
-    <field column="periodFromEH" name="periodFromEH" />
-    <field column="periodFromBM" name="periodFromBM" />
-    <field column="periodToEH" name="periodToEH" />
-    <field column="periodFromBM" name="periodFromBM" />
-    <field column="broadperiodEH" name="broadperiodEH" />
-    <field column="broadperiodBM" name="broadperiodBM" />
-    
-</entity>
+                >
+            <!--  Identifiers -->
+            <field column="findIdentifier" name="findIdentifier"/>
+            <field column="id" name="id"/>
+            <field column="old_findID" name="old_findID"/>
+            <field column="secuid" name="secuid"/>
 
-</document>
+            <!--  Spatial metadata -->
+            <field column="county" name="county"/>
+            <field column="district" name="district"/>
+            <field column="parish" name="parish"/>
+            <field column="knownas" name="knownas"/>
+            <field column="regionName" name="regionName"/>
+            <field column="Findspotcode" name="Findspotcode"/>
+
+            <!--  Spatial coordinates  -->
+            <field column="fourFigure" name="fourFigure"/>
+            <field column="gridref" name="gridref"/>
+            <field column="geohash" name="geohash"/>
+            <field column="latitude" name="latitude"/>
+            <field column="longitude" name="longitude"/>
+            <field column="elevation" name="elevation"/>
+            <field column="easting" name="easting"/>
+            <field column="northing" name="northing"/>
+            <field column="gridSource" name="gridSource"/>
+            <field column="fourFigureLat" name="fourFigureLat"/>
+            <field column="fourFigureLon" name="fourFigureLon"/>
+            <field column="precision" name="precision"/>
+            <field column="accuracy" name="accuracy"/>
+            <field column="coordinates" name="coordinates"/>
+
+            <!--  Object metadata -->
+            <field column="institution" name="institution"/>
+            <field column="notes" name="notes" stripHTML="true"/>
+            <field column="objecttype" name="objecttype"/>
+            <field column="smrRef" name="smrRef"/>
+            <field column="otherRef" name="otherRef"/>
+            <field column="culture" name="culture"/>
+            <field column="inscription" name="inscription"/>
+            <field column="classification" name="classification"/>
+            <field column="subClassification" name="subClassification"/>
+            <field column="TID" name="TID"/>
+            <field column="description" name="description" stripHTML="true"/>
+            <field column="workflow" name="workflow"/>
+            <field column="material" name="material"/>
+            <field column="materialTerm" name="materialTerm"/>
+            <field column="primaryMaterialBM" name="primaryMaterialBM"/>
+            <field column="secondaryMaterial" name="secondaryMaterial"/>
+            <field column="secondaryMaterialTerm" name="secondaryMaterialTerm"/>
+            <field column="secondaryMaterialBM" name="secondaryMaterialBM"/>
+            <field column="currentLocation" name="currentLocation"/>
+            <field column="musaccno" name="musaccno"/>
+            <field column="rally" name="rally"/>
+            <field column="rallyID" name="rallyID"/>
+            <field column="rallyName" name="rallyName"/>
+            <field column="decstyle" name="decstyle"/>
+            <field column="decstyleTerm" name="decstyleTerm"/>
+            <field column="manufacture" name="manufacture"/>
+            <field column="manufactureTerm" name="manufactureTerm"/>
+            <field column="bmManufacture" name="bmManufacture"/>
+            <field column="treatment" name="surface"/>
+            <field column="treatment" name="treatment"/>
+            <field column="treatmentTerm" name="treatmentTerm"/>
+            <field column="bmTreatment" name="bmTreatment"/>
+            <field column="preservation" name="preservation"/>
+            <field column="preservationTerm" name="preservationTerm"/>
+            <field column="bmPreservation" name="bmPreservation"/>
+            <field column="discovery" name="discovery"/>
+            <field column="discoveryMethod" name="discoveryMethod"/>
+            <field column="discovered" name="discovered"/>
+            <field column="subsequentAction" name="subsequentAction"/>
+            <field column="subsequentActionTerm" name="subsequentActionTerm"/>
+            <field column="completeness" name="completeness"/>
+            <field column="completenessTerm" name="completenessTerm"/>
+            <field column="note" name="note"/>
+            <field column="reason" name="reason"/>
+            <field column="reasonTerm" name="reasonTerm"/>
+            <field column="width" name="width"/>
+            <field column="height" name="height"/>
+            <field column="diameter" name="diameter"/>
+            <field column="thickness" name="thickness"/>
+            <field column="length" name="length"/>
+            <field column="weight" name="weight"/>
+            <field column="quantity" name="quantity"/>
+            <field column="cultureName" name="cultureName"/>
+            <field column="treasure" name="treasure"/>
+            <field column="hoardID" name="hoardID"/>
+            <field column="hoardName" name="hoardName"/>
+            <field column="hoard" name="hoard"/>
+
+
+            <!-- Chronology metadata -->
+            <field column="broadperiod" name="broadperiod"/>
+            <field column="periodFrom" name="periodFrom"/>
+            <field column="periodFromName" name="periodFromName"/>
+            <field column="periodTo" name="periodTo"/>
+            <field column="periodToName" name="periodToName"/>
+            <field column="fromdate" name="fromdate"/>
+            <field column="todate" name="todate"/>
+            <field column="fromsubperiod" name="fromsubperiod"/>
+            <field column="tosubperiod" name="tosubperiod"/>
+            <field column="datefound1" name="datefound1"/>
+            <field column="datefound2" name="datefound2"/>
+            <field column="fromDateQualifier" name="fromDateQualifier"/>
+            <field column="toDateQualifier" name="toDateQualifier"/>
+            <field column="subperiodTo" name="subperiodTo"/>
+            <field column="subperiodFrom" name="subperiodFrom"/>
+
+            <!--  Admin metadata -->
+            <field column="createdBy" name="createdBy"/>
+            <field column="created" name="created"/>
+            <field column="creator" name="creator"/>
+            <field column="updated" name="updated"/>
+            <field column="updatedBy" name="updatedBy"/>
+            <field column="updater" name="updater"/>
+            <field column="dbpediaSlug" name="dbpediaSlug"/>
+
+            <!--  Numismatic metadata -->
+            <field column="ruler" name="ruler"/>
+            <field column="ruler2" name="ruler2"/>
+            <field column="rulerName" name="rulerName"/>
+            <field column="secondaryRulerName" name="secondaryRulerName"/>
+            <field column="denomination" name="denomination"/>
+            <field column="denominationName" name="denominationName"/>
+            <field column="mint" name="mint"/>
+            <field column="mintName" name="mintName"/>
+            <field column="obverseDescription" name="obverseDescription" stripHTML="true"/>
+            <field column="reverseDescription" name="reverseDescription" stripHTML="true"/>
+            <field column="obverseLegend" name="obverseLegend"/>
+            <field column="reverseLegend" name="reverseLegend"/>
+            <field column="mintmark" name="mintmark"/>
+            <field column="cciNumber" name="cciNumber"/>
+            <field column="mackType" name="mackType"/>
+            <field column="bmcType" name="bmcType"/>
+            <field column="allentype" name="allenType"/>
+            <field column="abcType" name="abcType"/>
+            <field column="vaType" name="vaType"/>
+            <field column="reeceID" name="reeceID"/>
+            <field column="geography" name="geography"/>
+            <field column="geographyID" name="geographyID"/>
+            <field column="moneyer" name="moneyer"/>
+            <field column="moneyerName" name="moneyerName"/>
+            <field column="tribe" name="tribe"/>
+            <field column="tribeName" name="tribeName"/>
+            <field column="category" name="category"/>
+            <field column="categoryTerm" name="categoryTerm"/>
+            <field column="type" name="type"/>
+            <field column="typeTerm" name="typeterm"/>
+            <field column="axis" name="axis"/>
+            <field column="reverse" name="reverse"/>
+            <field column="reverseType" name="reverseType"/>
+            <field column="status" name="status"/>
+            <field column="statusTerm" name="statusTerm"/>
+
+            <!--  Image data -->
+            <field column="thumbnail" name="thumbnail"/>
+            <field column="filename" name="filename"/>
+            <field column="imagedir" name="imagedir"/>
+
+            <!--  Personal metadata -->
+            <field column="finder" name="finder"/>
+            <field column="finderID" name="finderID"/>
+            <field column="recorder" name="recorder"/>
+            <field column="recorderID" name="recorderID"/>
+            <field column="identifier" name="identifier"/>
+            <field column="identifierID" name="identifierID"/>
+            <field column="secondaryIdentifier" name="secondaryIdentifier"/>
+            <field column="identifer2ID" name="identifier2ID"/>
+
+            <!--  Numismatic linked data fields -->
+            <field column="rulerNomisma" name="rulerNomisma"/>
+            <field column="rulerDbpedia" name="rulerDbpedia"/>
+            <field column="rulerViaf" name="rulerViaf"/>
+            <field column="rulerBM" name="rulerBM"/>
+            <field column="moneyerDbpedia" name="moneyerDbpedia"/>
+            <field column="moneyerViaf" name="moneyerViaf"/>
+            <field column="moneyerBM" name="moneyerBM"/>
+            <field column="bmCultureID" name="bmCultureID"/>
+            <field column="bmTribeID" name="bmTribeID"/>
+
+            <!--  Mint linked data fields -->
+            <field column="nomismaMintID" name="nomismaMintID"/>
+            <field column="mintWoeid" name="mintWoeid"/>
+            <field column="mintGeonamesID" name="mintGeonamesID"/>
+            <field column="mintBM" name="mintBM"/>
+            <field column="pleiadesID" name="pleiadesID"/>
+
+            <!--  Denomination linked data -->
+            <field column="nomismaDenominationID" name="nomismaDenomination"/>
+            <field column="denominationBM" name="denominationBM"/>
+            <field column="denominationDbpedia" name="denominationDbpedia"/>
+
+            <!--  Linked data identifiers for Geodata -->
+            <field column="regionID" name="regionID"/>
+            <field column="countyID" name="countyID"/>
+            <field column="districtID" name="districtID"/>
+            <field column="parishID" name="parishID"/>
+            <field column="woeid" name="woeid"/>
+            <field column="countyType" name="countyType"/>
+            <field column="districtType" name="districtType"/>
+            <field column="parishType" name="parishType"/>
+            <field column="geonamesID" name="geonamesID"/>
+
+            <!-- Period linked data identifiers -->
+            <field column="periodFromEH" name="periodFromEH"/>
+            <field column="periodFromBM" name="periodFromBM"/>
+            <field column="periodToEH" name="periodToEH"/>
+            <field column="periodFromBM" name="periodFromBM"/>
+            <field column="broadperiodEH" name="broadperiodEH"/>
+            <field column="broadperiodBM" name="broadperiodBM"/>
+
+        </entity>
+
+    </document>
 </dataConfig>

@@ -1,13 +1,13 @@
 <dataConfig>
-	<dataSource type="JdbcDataSource"
-   driver="com.mysql.jdbc.Driver"
-   url="jdbc:mysql://localhost/{db}”
-   user=""
-   password=""
-   tinyInt1isBit="false"/>
-	<document name="content">
+    <dataSource type="JdbcDataSource"
+                driver="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://localhost/{db}"
+                user=""
+                password=""
+                tinyInt1isBit="false"/>
+    <document name="content">
         <entity name="content" transformer="HTMLStripTransformer"
-query="
+                query="
 SELECT
 CONCAT('people-',people.id) AS identifier,
 people.id,
@@ -31,25 +31,25 @@ FROM people
 LEFT JOIN primaryactivities ON people.primary_activity = primaryactivities.id
 LEFT JOIN organisations ON people.organisationID = organisations.secuid
 "
->
-<field column="identifier" name="identifier" />
-<field column="id" name="id" />
-<field column="surname" name="surname" />
-<field column="forename" name="forename" />
-<field column="fullname" name="fullname" />
-<field column="created" name="created" />
-<field column="updated" name="updated" />
-<field column="woeid" name="woeid" />
-<field column="county" name="county" />
-<field column="countyID" name="countyID" />
-<field column="place" name="place" />
-<field column="postcode" name="postcode" />
-<field column="activity" name="activity" />
-<field column="email" name="email" />
-<field column="lat" name="lat" />
-<field column="lon" name="lon" />
-<field column="coordinates" name="coordinates" />
-<field column="organisation" name="organisation" />
+                >
+            <field column="identifier" name="identifier"/>
+            <field column="id" name="id"/>
+            <field column="surname" name="surname"/>
+            <field column="forename" name="forename"/>
+            <field column="fullname" name="fullname"/>
+            <field column="created" name="created"/>
+            <field column="updated" name="updated"/>
+            <field column="woeid" name="woeid"/>
+            <field column="county" name="county"/>
+            <field column="countyID" name="countyID"/>
+            <field column="place" name="place"/>
+            <field column="postcode" name="postcode"/>
+            <field column="activity" name="activity"/>
+            <field column="email" name="email"/>
+            <field column="lat" name="lat"/>
+            <field column="lon" name="lon"/>
+            <field column="coordinates" name="coordinates"/>
+            <field column="organisation" name="organisation"/>
 
         </entity>
     </document>

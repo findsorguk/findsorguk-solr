@@ -4,13 +4,13 @@
 
                 driver="com.mysql.jdbc.Driver"
 
-                url="jdbc:mysql://localhost/{db}”
+                url="jdbc:mysql://localhost/{db}"
 
-   user=""
+                user=""
 
-    password=""
+                password=""
 
-    tinyInt1isBit="false"/>
+                tinyInt1isBit="false"/>
 
     <document name="content">
 
@@ -165,9 +165,9 @@ LEFT JOIN users AS users2 ON users2.id = news.updatedBy
 
             <field column="createdBy" name="createdBy"/>
 
-            <field column="updatedBy" name="updatedBy" />
+            <field column="updatedBy" name="updatedBy"/>
 
-            <field column="datePublished" name="datePublished" />
+            <field column="datePublished" name="datePublished"/>
 
         </entity>
 

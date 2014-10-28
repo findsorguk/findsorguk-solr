@@ -1,14 +1,14 @@
 <dataConfig>
-        <dataSource type="JdbcDataSource"
-   driver="com.mysql.jdbc.Driver"
-   url="jdbc:mysql://localhost/{db}”
-   batchSize="-1"
-   user=""
-   password=""
-   tinyInt1isBit="false"/>
-        <document name="content">
+    <dataSource type="JdbcDataSource"
+                driver="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://localhost/{db}"
+                batchSize="-1"
+                user=""
+                password=""
+                tinyInt1isBit="false"/>
+    <document name="content">
         <entity name="images" transformer="HTMLStripTransformer"
-query="
+                query="
 SELECT
 CONCAT('images-',imageID) AS identifier,
 imageID AS id,
@@ -43,31 +43,31 @@ LEFT JOIN users ON slides.createdBy = users.id
 LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
 WHERE finds.secwfstage > 1
 "
->
-                <field column="identifier" name="identifier" />
-                <field column="id" name="id" />
-                <field column="filename" name="filename" />
-                <field column="county" name="county" />
-                <field column="old_findID" name="old_findID" />
-                <field column="findID" name="findID" />
-            <field column="coordinates" name="coordinates" />
-            <field column="latitude" name="latitude" />
-            <field column="longitude" name="longitude" />
-            <field column="keywords" name="keywords" />
-            <field column="created" name="created" />
-            <field column="updated" name="updated" />
-            <field column="woeid" name="woeid" />
-            <field column="fullname" name="fullname" />
-            <field column="imagedir" name="imagedir" />
-            <field column="license" name="license" />
-            <field column="licenseAcronym" name="licenseAcronym" />
-            <field column="broadperiod" name="broadperiod" />
-            <field column="createdBy" name="createdBy" />
-                <field column="institution" name="institution" />
-                <field column="workflow" name="workflow" />
-                <field column="objecttype" name="objecttype" />
+                >
+            <field column="identifier" name="identifier"/>
+            <field column="id" name="id"/>
+            <field column="filename" name="filename"/>
+            <field column="county" name="county"/>
+            <field column="old_findID" name="old_findID"/>
+            <field column="findID" name="findID"/>
+            <field column="coordinates" name="coordinates"/>
+            <field column="latitude" name="latitude"/>
+            <field column="longitude" name="longitude"/>
+            <field column="keywords" name="keywords"/>
+            <field column="created" name="created"/>
+            <field column="updated" name="updated"/>
+            <field column="woeid" name="woeid"/>
+            <field column="fullname" name="fullname"/>
+            <field column="imagedir" name="imagedir"/>
+            <field column="license" name="license"/>
+            <field column="licenseAcronym" name="licenseAcronym"/>
+            <field column="broadperiod" name="broadperiod"/>
+            <field column="createdBy" name="createdBy"/>
+            <field column="institution" name="institution"/>
+            <field column="workflow" name="workflow"/>
+            <field column="objecttype" name="objecttype"/>
 
-                </entity>
+        </entity>
 
     </document>
 </dataConfig>

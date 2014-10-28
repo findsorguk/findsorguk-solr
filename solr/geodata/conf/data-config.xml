@@ -1,13 +1,13 @@
 <dataConfig>
-            <dataSource type="JdbcDataSource"
-   driver="com.mysql.jdbc.Driver"
-   url="jdbc:mysql://localhost/{db}”
-   user=""
-   password=""
-   tinyInt1isBit="false"/>
-            <document name="geodata">
+    <dataSource type="JdbcDataSource"
+                driver="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://localhost/{db}"
+                user=""
+                password=""
+                tinyInt1isBit="false"/>
+    <document name="geodata">
         <entity name="smrs" transformer="HTMLStripTransformer"
-query="
+                query="
 SELECT
 CONCAT('geodatasmr-',id) AS identifier,
 id,
@@ -22,23 +22,23 @@ CONCAT(lat,',',lon) AS coordinates,
 'smrdata' AS source
 FROM scheduledMonuments
 "
->       
-                        <field column="identifier" name="identifier" />
-                        <field column="id" name="id" />
-                        <field column="name" name="name" />
-        <field column="parish" name="parish" />
-        <field column="district" name="district" />
-        <field column="county" name="county" />
-        <field column="latitude" name="latitude" />
-        <field column="longitude" name="longitude" />
-        <field column="coordinates" name="coordinates" />
-                <field column="woeid" name="woeid" />
-                <field column="type" name="type" />
-                <field column="source" name="source" />
-                        </entity>
-                       
-<entity name="osdata" transformer="HTMLStripTransformer"
-query="
+                >
+            <field column="identifier" name="identifier"/>
+            <field column="id" name="id"/>
+            <field column="name" name="name"/>
+            <field column="parish" name="parish"/>
+            <field column="district" name="district"/>
+            <field column="county" name="county"/>
+            <field column="latitude" name="latitude"/>
+            <field column="longitude" name="longitude"/>
+            <field column="coordinates" name="coordinates"/>
+            <field column="woeid" name="woeid"/>
+            <field column="type" name="type"/>
+            <field column="source" name="source"/>
+        </entity>
+
+        <entity name="osdata" transformer="HTMLStripTransformer"
+                query="
 SELECT
 CONCAT('geodataos-',id) AS identifier,
 id,
@@ -52,17 +52,17 @@ f_code AS type
  
 FROM osdata
 "
->       
-                        <field column="identifier" name="identifier" />
-                        <field column="id" name="id" />
-                        <field column="name" name="name" />
-        <field column="county" name="county" />
-        <field column="latitude" name="latitude" />
-        <field column="longitude" name="longitude" />
-        <field column="coordinates" name="coordinates" />
-                <field column="type" name="type" />
-                <field column="source" name="source" />
-                        </entity>
+                >
+            <field column="identifier" name="identifier"/>
+            <field column="id" name="id"/>
+            <field column="name" name="name"/>
+            <field column="county" name="county"/>
+            <field column="latitude" name="latitude"/>
+            <field column="longitude" name="longitude"/>
+            <field column="coordinates" name="coordinates"/>
+            <field column="type" name="type"/>
+            <field column="source" name="source"/>
+        </entity>
     </document>
-    
+
 </dataConfig>
