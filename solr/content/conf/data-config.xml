@@ -12,8 +12,12 @@
         <entity name="content" transformer="HTMLStripTransformer"
 
                 query="SELECT CONCAT('content-',id) AS identifier, id, title, slug, excerpt,
-body,section, metaKeywords AS keywords, publishState, 'sitecontent' AS type
-FROM content"
+body,section, metaKeywords AS keywords, publishState, 'sitecontent' AS type, users1.fullname AS createdBy,
+ users2.fullname AS updatedBy, content.updated, content.created
+FROM content
+LEFT JOIN users AS users1 ON users1.id = news.createdBy
+LEFT JOIN users AS users2 ON users2.id = news.updatedBy
+"
 
                 >
 
@@ -42,6 +46,10 @@ FROM content"
             <field column="publishState" name="publishState"/>
 
             <field column="type" name="type"/>
+
+            <field column="createdBy" name="createdBy" />
+
+            <field column="updatedBy" name="updatedBy"
 
         </entity>
 
