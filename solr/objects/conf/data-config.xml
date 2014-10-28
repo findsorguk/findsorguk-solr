@@ -2,7 +2,7 @@
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
                 batchSize="-1"
-                url="jdbc:mysql://localhost/{db}”
+                url="jdbc:mysql://localhost/{db}"
    user=""
     password=""
     tinyInt1isBit="false"/>
@@ -405,7 +405,7 @@ OR findspots.updated > '${dataimporter.last_index_time}'
             <field column="fromDateQualifier" name="fromDateQualifier"/>
             <field column="toDateQualifier" name="toDateQualifier"/>
             <field column="periodToQualifier" name="periodToQualifier" />
-            <field column="periodFromQualifier"
+            <field column="periodFromQualifier" name="periodFromQualifier" />
             <field column="subperiodTo" name="subperiodTo"/>
             <field column="subperiodFrom" name="subperiodFrom"/>
 
