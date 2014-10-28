@@ -1,48 +1,19 @@
 <dataConfig>
-
     <dataSource type="JdbcDataSource"
-
                 driver="com.mysql.jdbc.Driver"
-
                 url="jdbc:mysql://localhost/{db}"
-
                 user=""
-
                 password=""
-
-                tinyInt1isBit="false"/>
-
+                tinyInt1isBit="false"
+                batchSize="-1"
+            />
     <document name="content">
 
         <entity name="content" transformer="HTMLStripTransformer"
 
-                query="
-
-SELECT
-
-CONCAT('content-',id) AS identifier,
-
-id,
-
-title,
-
-slug,
-
-excerpt,
-
-body,
-
-section,
-
-metaKeywords AS keywords,
-
-publishState,
-
-'sitecontent' AS type
-
-FROM content
-
-"
+                query="SELECT CONCAT('content-',id) AS identifier, id, title, slug, excerpt,
+body,section, metaKeywords AS keywords, publishState, 'sitecontent' AS type
+FROM content"
 
                 >
 
@@ -126,7 +97,7 @@ FROM news
 LEFT JOIN users AS users1 ON users1.id = news.createdBy
 
 LEFT JOIN users AS users2 ON users2.id = news.updatedBy
-
+LIMIT 1
 "
 
                 >

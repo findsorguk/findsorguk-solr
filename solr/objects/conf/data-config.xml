@@ -3,9 +3,9 @@
                 driver="com.mysql.jdbc.Driver"
                 batchSize="-1"
                 url="jdbc:mysql://localhost/{db}"
-   user=""
-    password=""
-    tinyInt1isBit="false"/>
+                user=""
+                password=""
+                tinyInt1isBit="false"/>
     <document name="content">
         <entity name="node" transformer="HTMLStripTransformer"
                 query="

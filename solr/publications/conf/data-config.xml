@@ -4,7 +4,8 @@
                 url="jdbc:mysql://localhost/{db}"
                 user=""
                 password=""
-                tinyInt1isBit="false"/>
+                tinyInt1isBit="false"
+                batchSize="-1"/>
     <document name="content">
         <entity name="content" transformer="HTMLStripTransformer"
                 query="
