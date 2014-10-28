@@ -112,6 +112,11 @@ woeid,
 publish_state AS publishState,
 
 'news' AS type,
+
+news.created AS created,
+
+news.updated AS updated,
+
 users1.fullname AS createdBy,
 
 users2.fullname AS updatedBy
@@ -158,7 +163,9 @@ LEFT JOIN users AS users2 ON users2.id = news.updatedBy
 
             <field column="createdBy" name="createdBy"/>
 
-            <field column="updatedBy" name="updatedBy"
+            <field column="updatedBy" name="updatedBy" />
+
+            <field column="datePublished" name="datePublished" />
 
         </entity>
 
