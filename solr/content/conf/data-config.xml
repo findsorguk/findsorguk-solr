@@ -32,7 +32,7 @@ LEFT JOIN users AS users2 ON users2.id = content.updatedBy
             <field column="publishState" name="publishState"/>
             <field column="type" name="type"/>
             <field column="createdBy" name="createdBy" />
-            <field column="updatedBy" name="updatedBy"
+            <field column="updatedBy" name="updatedBy" />
         </entity>
 
         <entity name="news" transformer="HTMLStripTransformer"
@@ -105,7 +105,7 @@ LEFT JOIN users AS users2 ON users2.id = content.updatedBy
             <field column="place" name="place"/>
             <field column="section" name="section"/>
             <field column="keywords" name="keywords"/>
-            <field column="created" name="created"/
+            <field column="created" name="created"/>
             <field column="updated" name="updated"/>
             <field column="slug" name="slug"/>
             <field column="woeid" name="woeid"/>
