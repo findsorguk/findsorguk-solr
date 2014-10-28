@@ -699,24 +699,7 @@
     <copyField source="inscription" dest="text"/>
     <copyField source="county" dest="text"/>
     <copyField source="objecttype" dest="text"/>
-    <copyField source="smrRef" dest="text"/>
-    <copyField source="TID" dest="text"/>
-    <copyField source="knownas" dest="text"/>
-    <copyField source="classification" dest="text"/>
-    <copyField source="subClassification" dest="text"/>
-    <copyField source="material" dest="text"/>
-    <copyField source="currentLocation" dest="text"/>
-    <copyField source="subsequentActionTerm" dest="text"/>
-    <copyField source="musaccno" dest="text"/>
-    <copyField source="rallyName" dest="text"/>
-    <copyField source="typeTerm" dest="text"/>
-    <copyField source="categoryTerm" dest="text"/>
-    <copyField source="district" dest="text"/>
-    <copyField source="regionName" dest="text"/>
-    <copyField source="discoveryMethod" dest="text"/>
-    <copyField source="objecttype" dest="objectType"/>
-    <copyField source="reverseType" dest="text"/>
-    <copyField source="otherRef" dest="text"/>
+  
 
     <!-- Above, multiple source fields are copied to the [text] field.
        Another way to map multiple source fields to the same
