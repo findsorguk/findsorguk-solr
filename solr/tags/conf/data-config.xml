@@ -1,0 +1,47 @@
+<dataConfig>
+    <dataSource type="JdbcDataSource"
+                driver="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://localhost/{db}"
+                user="{user}"
+                password="{password}"
+                batchSize="-1"
+                tinyInt1isBit="false"/>
+    <document name="semanticTags">
+        <entity name="tags" transformer="HTMLStripTransformer"
+                query="
+		SELECT
+		CONCAT('finds-',finds.id) AS tagIdentifier
+        id,
+        contentID,
+        term,
+        type,
+        contenttype,
+        origin,
+        latitude,
+        longitude,
+        woeid,
+        created,
+        createdBy,
+        CONCAT(longitude,',',latitude) AS coordinates,
+        users.fullname AS creator
+		FROM semanticTags
+        LEFT JOIN users ON semanticTags.createdBy = users.id
+		">
+            <field column="id" name="id"/>
+            <field column="tagIdentifier" name="tagIdentifier" />
+            <field column="createdBy" name="createdBy" />
+            <field column="created" name="created" />
+            <field column="term" name="term" />
+            <field column="type" name="type" />
+            <field column="contenttype" name="contenttype" />
+            <field column="origin" name="origin" />
+            <field column="latitude" name="latitude"/>
+            <field column="longitude" name="longitude" />
+            <field column="woeid" name="woeid" />
+            <field column="contentID" name="contentID" />
+            <field column="coordinates" name="coordinates" />
+            <field column="creator" name="creator" />
+        </entity>
+    </document>
+</dataConfig>
+

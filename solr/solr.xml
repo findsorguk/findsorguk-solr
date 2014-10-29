@@ -21,5 +21,7 @@
               config="solrconfig.xml" dataDir="data"/>
         <core schema="schema.xml" loadOnStartup="true" instanceDir="coinsummary/" transient="false" name="coinsummary"
               config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="tags/" transient="false" name="tags"
+              config="solrconfig.xml" dataDir="data"/>
     </cores>
 </solr>
