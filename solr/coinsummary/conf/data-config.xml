@@ -40,8 +40,8 @@
             <field column="id" name="id"/>
             <field column="summaryIdentifier" name="summaryIdentifier" />
             <field column="hoardID" name="hoardID" />
-            <field column="denominationID" name="title"/>
-            <field column="denomination" name="objecttype"/>
+            <field column="denominationID" name="denominationID "/>
+            <field column="denomination" name="denomination"/>
             <field column="broadperiod" name="broadperiod"/>
             <field column="mint" name="mint"/>
             <field column="mintID" name="mintID"/>
