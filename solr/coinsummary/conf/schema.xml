@@ -470,6 +470,7 @@
         <!--  identifiers -->
         <field name="summaryIdentifier" type="string" indexed="true" stored="true" required="true"/>
         <field name="id" type="int" indexed="true" stored="true" required="true"/>
+        <field name="hoard" type="string" indexed="true" stored="true" />
         <field name="hoardID" type="int" indexed="true" stored="true" required="true" />
         <field name="denominationID" type="int" indexed="true" stored="false"/>
         <field name="denomination" type="string" indexed="true" stored="true" />
@@ -572,6 +573,9 @@
     <copyField source="mint" dest="text" />
     <copyField source="broadperiod" dest="text" />
     <copyField source="geography" dest="text" />
+    <copyField source="ruler" dest="text" />
+    <copyField source="hoard" dest="text" />
+    
 
 
     <!-- Case insensitivity

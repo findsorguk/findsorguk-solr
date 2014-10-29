@@ -13,6 +13,7 @@
 		CONCAT('coinsummary-',coinsummary.id) AS summaryIdentifier,
 		coinsummary.id AS id,
 		hoards.id AS hoardID,
+		hoards.hoardID AS hoard
 		coinsummary.denomination AS denominationID,
 		coinsummary.mint_id AS mintID,
 		coinsummary.numdate1 AS fromDate,
@@ -39,12 +40,15 @@
 		">
             <field column="id" name="id"/>
             <field column="summaryIdentifier" name="summaryIdentifier" />
+            <field column="hoard" name="hoard" />
             <field column="hoardID" name="hoardID" />
             <field column="denominationID" name="denominationID "/>
             <field column="denomination" name="denomination"/>
             <field column="broadperiod" name="broadperiod"/>
             <field column="mint" name="mint"/>
             <field column="mintID" name="mintID"/>
+            <field column="ruler" name="ruler"/>
+            <field column="rulerID" name="rulerID"/>
             <field column="geographyID" name="geographyID" />
             <field column="geography" name="geography" />
             <field column="quantity" name="quantity" />
