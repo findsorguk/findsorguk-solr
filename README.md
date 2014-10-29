@@ -13,12 +13,13 @@ Cores
 * Images - images of objects
 * People - people table
 * Publications - referenced publications
+* Tags - semantic tags sourced from OpenCalais
 
 Operating environment
 ============
 
 * Tomcat 7 +
-* Tested on OSX or Linux
+* Tested on OSX and Linux
 
 Installation
 ============
@@ -26,3 +27,12 @@ Installation
 OSX
 
 Linux
+
+Importing data
+==============
+
+You can either use the solr admin panel, or use:
+
+http://{hostname}:8080/solr/{corename}/dataimport?command=full-import&clean={true|false}&commit={true|false}
+
+Of course remove the angle brackets from your value.
