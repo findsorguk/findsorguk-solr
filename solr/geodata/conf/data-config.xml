@@ -4,7 +4,9 @@
                 url="jdbc:mysql://localhost/{db}"
                 user=""
                 password=""
-                tinyInt1isBit="false"/>
+                tinyInt1isBit="false"
+                batchSize="-1"
+            />
     <document name="geodata">
         <entity name="smrs" transformer="HTMLStripTransformer"
                 query="
