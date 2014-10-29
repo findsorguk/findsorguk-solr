@@ -1,0 +1,64 @@
+<dataConfig>
+    <dataSource type="JdbcDataSource"
+                driver="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://localhost/{db}"
+                user="{user}"
+                password="{password}"
+                batchSize="-1"
+                tinyInt1isBit="false"/>
+    <document name="coinsummary">
+        <entity name="summary" transformer="HTMLStripTransformer"
+                query="
+		SELECT
+		CONCAT('coinsummary-',coinsummary.id) AS summaryIdentifier,
+		coinsummary.id AS id,
+		hoards.id AS hoardID,
+		coinsummary.denomination AS denominationID,
+		coinsummary.mint_id AS mintID,
+		coinsummary.numdate1 AS fromDate,
+		coinsummary.numdate2 AS toDate,
+		coinsummary.quantity,
+		coinsummary.broadperiod,
+        coinsummary.created,
+        coinsummary.updated,
+        denominations.denomination AS denomination,
+        mints.mint_name AS mint,
+        CONCAT(region, ' ' , area, ' ' , tribe) AS geography,
+        users.fullname AS creator,
+        users2.fullname AS updater,
+        coinsummary.institution AS institution,
+        coinsummary.createdBy,
+        coinsummary.updatedBy
+		FROM coinsummary
+		LEFT JOIN hoards ON coinsummary.hoardID = hoards.secuid
+		LEFT JOIN denominations ON coinsummary.denomination = denominations.id
+		LEFT JOIN mints ON coinsummary.mint_id = mints.id
+		LEFT JOIN geographyironage ON coinsummary.geographyID = geographyironage.id
+		LEFT JOIN users ON coinsummary.createdBy = users.id
+		LEFT JOIN users AS users2 ON coinsummary.updatedBy = users2.id
+		">
+            <field column="id" name="id"/>
+            <field column="summaryIdentifier" name="summaryIdentifier" />
+            <field column="hoardID" name="hoardID" />
+            <field column="denominationID" name="title"/>
+            <field column="denomination" name="objecttype"/>
+            <field column="broadperiod" name="broadperiod"/>
+            <field column="mint" name="mint"/>
+            <field column="mintID" name="mintID"/>
+            <field column="geographyID" name="geographyID" />
+            <field column="geography" name="geography" />
+            <field column="quantity" name="quantity" />
+            <field column="fromDate" name="fromDate" />
+            <field column="toDate" name="toDate"/>
+            <field column="creator" name="creator" />
+            <field column="updater" name="updater" />
+            <field column="created" name="created" />
+            <field column="updated" name="updated" />
+            <field column="institution" name="institution" />
+            <field column="createdBy" name="createdBy" />
+            <field column="updatedBy" name="updatedBy" />
+
+        </entity>
+    </document>
+</dataConfig>
+
