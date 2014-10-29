@@ -10,7 +10,7 @@
         <entity name="tags" transformer="HTMLStripTransformer"
                 query="
 		SELECT
-		CONCAT('finds-',finds.id) AS tagIdentifier
+		CONCAT('finds-',finds.id) AS tagIdentifier,
         id,
         contentID,
         term,
