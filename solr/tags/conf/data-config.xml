@@ -10,8 +10,8 @@
         <entity name="tags" transformer="HTMLStripTransformer"
                 query="
 		SELECT
-		CONCAT('finds-',finds.id) AS tagIdentifier,
-        id,
+		CONCAT('tags-',semanticTags.id) AS tagIdentifier,
+        semanticTags.id,
         contentID,
         term,
         type,
@@ -20,8 +20,8 @@
         latitude,
         longitude,
         woeid,
-        created,
-        createdBy,
+        semanticTags.created,
+        semanticTags.createdBy,
         CONCAT(longitude,',',latitude) AS coordinates,
         users.fullname AS creator
 		FROM semanticTags
