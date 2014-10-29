@@ -575,7 +575,7 @@
     <copyField source="geography" dest="text" />
     <copyField source="ruler" dest="text" />
     <copyField source="hoard" dest="text" />
-    
+
 
 
     <!-- Case insensitivity

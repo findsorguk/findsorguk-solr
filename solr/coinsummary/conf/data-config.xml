@@ -13,7 +13,7 @@
 		CONCAT('coinsummary-',coinsummary.id) AS summaryIdentifier,
 		coinsummary.id AS id,
 		hoards.id AS hoardID,
-		hoards.hoardID AS hoard
+		hoards.hoardID AS hoard,
 		coinsummary.denomination AS denominationID,
 		coinsummary.mint_id AS mintID,
 		coinsummary.numdate1 AS fromDate,
@@ -22,9 +22,11 @@
 		coinsummary.broadperiod,
         coinsummary.created,
         coinsummary.updated,
+        coinsummary.ruler_id AS rulerID,
+        rulers.issuer AS ruler,
         denominations.denomination AS denomination,
         mints.mint_name AS mint,
-        CONCAT(region, ' ' , area, ' ' , tribe) AS geography,
+        CONCAT(geographyironage.region, ' ' , geographyironage.area, ' ' , geographyironage.tribe) AS geography,
         users.fullname AS creator,
         users2.fullname AS updater,
         coinsummary.institution AS institution,
@@ -34,6 +36,7 @@
 		LEFT JOIN hoards ON coinsummary.hoardID = hoards.secuid
 		LEFT JOIN denominations ON coinsummary.denomination = denominations.id
 		LEFT JOIN mints ON coinsummary.mint_id = mints.id
+		LEFT JOIN rulers ON coinsummary.ruler_id = rulers.id
 		LEFT JOIN geographyironage ON coinsummary.geographyID = geographyironage.id
 		LEFT JOIN users ON coinsummary.createdBy = users.id
 		LEFT JOIN users AS users2 ON coinsummary.updatedBy = users2.id
