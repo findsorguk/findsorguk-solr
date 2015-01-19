@@ -612,9 +612,7 @@
         <field name="category" type="int" indexed="true" stored="true"/>
         <field name="categoryTerm" type="string" indexed="true" stored="true"/>
         <field name="type" type="int" indexed="true" stored="true"/>
-
         <field name="typeTerm" type="string" indexed="true" stored="true"/>
-
         <field name="axis" type="int" indexed="true" stored="true"/>
         <field name="reverse" type="int" indexed="true" stored="true"/>
         <field name="reverseType" type="text" indexed="true" stored="true"/>
@@ -674,6 +672,29 @@
         <field name="regionID" type="int" indexed="true" stored="true"/>
         <field name="woeid" type="int" indexed="true" stored="true"/>
         <field name="geonamesID" type="int" indexed="true" stored="true"/>
+
+        <!-- Hoard specific fields -->
+        <field name="lastRulerID" type="int" indexed="true" stored="true" />
+        <field name="lastRuler" type="string" indexed="true" stored="true" />
+        <field name="quantityCoins" type="int" indexed="true" stored="true" />
+        <field name="quantityArtefacts" type="int" indexed="true" stored="true" />
+        <field name="quantityContainers" type="int" indexed="true" stored="true" />
+        <field name="terminalyear1" type="int" indexed="true" stored="true" />
+        <field name="terminalyear2" type="int" indexed="true" stored="true" />
+        <field name="qualityRating" type="int" indexed="true" stored="true" />
+        <field name="terminalReasonID" type="int" indexed="true" stored="true" />
+        <field name="terminalReason" type="string" indexed="true" stored="true" />
+        <field name="legacyID" type="int" indexed="true" stored="true" />
+        <field name="siteDateYear1" type="int" indexed="true" stored="true" />
+        <field name="siteDateYear2" type="int" indexed="true" stored="true" />
+        <field name="featureDateYear1" type="int" indexed="true" stored="true" />
+        <field name="featureDateYear2" type="int" indexed="true" stored="true" />
+        <field name="excavatedYear1" type="int" indexed="true" stored="true" />
+        <field name="excavatedYear2" type="int" indexed="true" stored="true" />
+        <field name="archaeologyDescription" type="text" indexed="true" stored="true" />
+        <field name="knownSite" type="int" indexed="true" stored="true" />
+        <field name="excavated" type="int" indexed="true" stored="true" />
+        <field name="siteContextID" type="int" indexed="true" stored="true" />
 
         <!--  Period linked data -->
         <field name="broadperiodEH" type="string" indexed="true" stored="true"/>
@@ -809,6 +830,9 @@
     <copyField source="district" dest="text"/>
     <copyField source="regionName" dest="text"/>
     <copyField source="discoveryMethod" dest="text"/>
+
+    <!-- Hoard data -->
+
 
     <!-- Case insensitivity -->
     <copyField source="objecttype" dest="objectType"/>
