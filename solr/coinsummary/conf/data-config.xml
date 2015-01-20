@@ -1,58 +1,59 @@
 <dataConfig>
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://localhost/{db}"
-                user="{user}"
-                password="{password}"
+                url="jdbc:mysql://127.0.0.1/antiquitiesTwo"
+                user="webuser2"
+                password="45jql11w"
                 batchSize="-1"
                 tinyInt1isBit="false"/>
     <document name="coinsummary">
         <entity name="summary" transformer="HTMLStripTransformer"
                 query="
-		SELECT
-		CONCAT('coinsummary-',coinsummary.id) AS summaryIdentifier,
-		coinsummary.id AS id,
-		hoards.id AS hoardID,
-		hoards.hoardID AS hoard,
-		coinsummary.denomination AS denominationID,
-		coinsummary.mint_id AS mintID,
-		coinsummary.numdate1 AS fromDate,
-		coinsummary.numdate2 AS toDate,
-		coinsummary.quantity,
-		coinsummary.broadperiod,
-        coinsummary.created,
-        coinsummary.updated,
-        coinsummary.ruler_id AS rulerID,
-        rulers.issuer AS ruler,
-        denominations.denomination AS denomination,
-        mints.mint_name AS mint,
-        CONCAT(geographyironage.region, ' ' , geographyironage.area, ' ' , geographyironage.tribe) AS geography,
-        users.fullname AS creator,
-        users2.fullname AS updater,
-        coinsummary.institution AS institution,
-        coinsummary.createdBy,
-        coinsummary.updatedBy
-		FROM coinsummary
-		LEFT JOIN hoards ON coinsummary.hoardID = hoards.secuid
-		LEFT JOIN denominations ON coinsummary.denomination = denominations.id
-		LEFT JOIN mints ON coinsummary.mint_id = mints.id
-		LEFT JOIN rulers ON coinsummary.ruler_id = rulers.id
-		LEFT JOIN geographyironage ON coinsummary.geographyID = geographyironage.id
-		LEFT JOIN users ON coinsummary.createdBy = users.id
-		LEFT JOIN users AS users2 ON coinsummary.updatedBy = users2.id
+SELECT
+CONCAT('coinsummary-',coinsummary.id) AS summaryIdentifier,
+coinsummary.id AS id,
+hoards.id AS hoardID,
+hoards.hoardID AS hoard,
+coinsummary.denomination AS denominationID,
+coinsummary.mint_id AS mintID,
+coinsummary.numdate1 AS fromDate,
+coinsummary.numdate2 AS toDate,
+coinsummary.quantity,
+coinsummary.broadperiod,
+coinsummary.created,
+coinsummary.updated,
+coinsummary.ruler_id AS rulerID,
+coinsummary.geographyID,
+rulers.issuer AS ruler,
+denominations.denomination AS denomination,
+mints.mint_name AS mint,
+CONCAT(geographyironage.region, ' ' , geographyironage.area, ' ' , geographyironage.tribe) AS geography,
+users.fullname AS creator,
+users2.fullname AS updater,
+coinsummary.institution AS institution,
+coinsummary.createdBy,
+coinsummary.updatedBy
+FROM coinsummary
+LEFT JOIN hoards ON coinsummary.hoardID = hoards.secuid
+LEFT JOIN denominations ON coinsummary.denomination = denominations.id
+LEFT JOIN mints ON coinsummary.mint_id = mints.id
+LEFT JOIN rulers ON coinsummary.ruler_id = rulers.id
+LEFT JOIN geographyironage ON coinsummary.geographyID = geographyironage.id
+LEFT JOIN users ON coinsummary.createdBy = users.id
+LEFT JOIN users AS users2 ON coinsummary.updatedBy = users2.id
 		">
             <field column="id" name="id"/>
             <field column="summaryIdentifier" name="summaryIdentifier" />
             <field column="hoard" name="hoard" />
             <field column="hoardID" name="hoardID" />
-            <field column="denominationID" name="denominationID "/>
+            <field column="denomID" name="denominationID "/>
             <field column="denomination" name="denomination"/>
             <field column="broadperiod" name="broadperiod"/>
             <field column="mint" name="mint"/>
             <field column="mintID" name="mintID"/>
             <field column="ruler" name="ruler"/>
             <field column="rulerID" name="rulerID"/>
-            <field column="geographyID" name="geographyID" />
+            <field column="geogID" name="geographyID" />
             <field column="geography" name="geography" />
             <field column="quantity" name="quantity" />
             <field column="fromDate" name="fromDate" />
@@ -68,4 +69,3 @@
         </entity>
     </document>
 </dataConfig>
-

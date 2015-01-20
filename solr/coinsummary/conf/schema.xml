@@ -472,25 +472,25 @@
         <field name="id" type="int" indexed="true" stored="true" required="true"/>
         <field name="hoard" type="string" indexed="true" stored="true" />
         <field name="hoardID" type="int" indexed="true" stored="true" required="true" />
-        <field name="denominationID" type="int" indexed="true" stored="false"/>
         <field name="denomination" type="string" indexed="true" stored="true" />
-        <field name="mintID" type="int" indexed="true" stored="false" />
+        <field name="mintID" type="int" indexed="true" stored="true" />
         <field name="mint" type="string" indexed="true" stored="true" />
         <field name="broadperiod" type="string" indexed="true" stored="true" />
-        <field name="rulerID" type="int" indexed="true" stored="false" />
+        <field name="rulerID" type="int" indexed="true" stored="true" />
         <field name="ruler" type="string" indexed="true" stored="true" />
-        <field name="dateFrom" type="int" indexed="true" stored="true"/>
-        <field name="dateTo" type="int" indexed="true" stored="true" />
+        <field name="fromDate" type="int" indexed="true" stored="true"/>
+        <field name="toDate" type="int" indexed="true" stored="true" />
         <field name="quantity" type="int" indexed="true" stored="true" />
         <field name="institution" type="string" indexed="true" stored="true" />
-        <field name="geographyID" type="int" indexed="true" stored="false" />
         <field name="geography" type="string" indexed="true" stored="true" />
         <field name="created" type="date" indexed="true" stored="true" />
         <field name="updated" type="date" indexed="true" stored="true" />
-        <field name="createdBy" type="int" indexed="true" stored="false" />
-        <field name="updatedBy" type="int" indexed="true" stored="false" />
+        <field name="createdBy" type="int" indexed="true" stored="true" />
+        <field name="updatedBy" type="int" indexed="true" stored="true" />
         <field name="creator" type="string" indexed="true" stored="true" />
         <field name="updater" type="string" indexed="true" stored="true" />
+        <field name="denominationID" type="int" indexed="true" stored="true" />
+        <field name="geographyID" type="int" indexed="true" stored="true" />
 
         <!-- catchall field, containing all other searchable text fields (implemented
              via copyField further on in this schema  -->
