@@ -627,6 +627,7 @@
         <field name="thumbnail" type="int" indexed="true" stored="true"/>
         <field name="imagedir" type="string" indexed="true" stored="true"/>
         <field name="imageCopyright" type="string" indexed="true" stored="true"/>
+        <field name="3D" type="string" indexed="true" stored="true" />
 
         <!--  Linked data identifiers -->
         <field name="bmCultureID" type="int" indexed="true" stored="true"/>

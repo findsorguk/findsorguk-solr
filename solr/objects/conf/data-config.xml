@@ -7,219 +7,244 @@
                 password=""
                 tinyInt1isBit="false"/>
     <document name="content">
+    <document name="content">
         <entity name="artefacts" transformer="HTMLStripTransformer"
                 query="
-SELECT
-DISTINCT(finds.id) as id,
-CONCAT('finds-',finds.id) AS findIdentifier,
-finds.old_findID,
-finds.secuid,
-findspots.county,
-findspots.district,
-findspots.parish,
-findspots.knownas,
-osRegions.label as regionName,
-findspots.gridref,
-findspots.fourFigure,
-findspots.geohash,
-findspots.declat AS latitude,
-findspots.declong AS longitude,
-findspots.easting,
-findspots.northing,
-findspots.elevation,
-findspots.fourFigureLat,
-findspots.fourFigureLon,
-findspots.gridlen AS 'precision',
-findspots.accuracy,
-maporigins.term AS gridSource,
-CONCAT(declat,',',declong) AS coordinates,
-finds.institution,
-finds.objecttype,
-finds.notes,
-finds.description,
-finds.smr_ref AS smrRef,
-finds.other_ref AS otherRef,
-finds.culture,
-cultures.term AS cultureName,
-cultures.bmCultureID,
-finds.inscription,
-finds.classification,
-finds.subclass As subClassification,
-finds.treasureID AS TID,
-finds.treasure,
-finds.secwfstage AS workflow,
-finds.material1 AS material,
-mat.term AS materialTerm,
-mat.bmID AS primaryMaterialBM,
-finds.material2 AS secondaryMaterial,
-mat2.term AS secondaryMaterialTerm,
-mat2.bmID AS secondaryMaterialBM,
-finds.curr_loc AS currentLocation,
-finds.musaccno,
-finds.rally,
-findspots.old_findspotid AS findspotcode,
-finds.rallyID,
-rallies.rally_name AS rallyName,
-finds.decstyle,
-decstyles.term AS decstyleTerm,
-finds.manmethod AS manufacture,
-manufactures.term AS manufactureTerm,
-manufactures.bmID AS bmManufacture,
-surftreatments.term AS treatment,
-surftreatments.bmID AS bmTreatment,
-finds.surftreat AS treatment,
-finds.preservation,
-preservations.term AS preservationTerm,
-preservations.bmID AS bmPreservation,
-finds.discmethod as discovery,
-discmethods.method AS discoveryMethod,
-EXTRACT(YEAR FROM datefound1) AS discovered,
-finds.subs_action as subsequentAction,
-subsequentActions.action as subsequentActionTerm,
-finds.completeness,
-completeness.term AS completenessTerm,
-finds.findofnote AS note,
-findofnotereasons.term as reasonTerm,
-finds.findofnotereason AS reason,
-finds.width,
-finds.height,
-finds.thickness,
-finds.diameter,
-finds.weight,
-finds.length,
-finds.quantity,
-finds.broadperiod,
-finds.objdate1period AS periodFrom,
-p1.term AS periodFromName,
-finds.objdate2period AS periodTo,
-p2.term AS periodToName,
-finds.numdate1 AS fromdate,
-finds.numdate2 AS todate,
-finds.objdate1subperiod AS fromsubperiod,
-finds.objdate2subperiod AS tosubperiod,
-finds.datefound1,
-finds.datefound2,
-dq1.term as periodFromQualifier,
-dq2.term as periodToQualifier,
-dq3.term as fromDateQualifier,dq4.term as toDateQualifier,
-sub1.term AS subperiodFrom,
-sub2.term AS subperiodTo,
-finds.createdBy AS createdBy,
-users.fullname AS creator,
-finds.created,
-finds.updated,
-finds.updatedBy,
-users2.fullname AS updater,
-finds.dbpediaSlug,
-coins.ruler_id AS ruler,
-coins.ruler2_id AS ruler2,
-rulers.issuer AS rulerName,
-r2.issuer AS secondaryRulerName,
-coins.denomination,
-denominations.denomination AS denominationName,
-coins.mint_id AS mint, mints.mint_name AS mintName,
-coins.obverse_description AS obverseDescription,
-coins.obverse_inscription AS obverseLegend,
-coins.reverse_description AS reverseDescription,
-coins.reverse_inscription AS reverseLegend,
-reverse_mintmark AS mintmark,
-coins.cciNumber,
-coins.allen_type AS allenType,
-coins.mack_type AS mackType,
-coins.bmc_type AS bmcType,
-coins.rudd_type AS abcType,
-coins.va_type AS vaType,
-coins.reeceID AS reeceID,
-coins.moneyer,
-moneyers.name AS moneyerName,
-coins.tribe,
-ironagetribes.tribe AS tribeName,
-ironagetribes.bmTribeID,
-coins.categoryID as category,
-medievalcategories.category AS categoryTerm,
-coins.typeID as type,
-medievaltypes.type AS typeTerm,
-coins.die_axis_measurement AS axis,
-coins.revtypeID as reverse,
-revtypes.type AS reverseType,
-coins.status,
-statuses.term AS statusTerm,
-CONCAT(geographyironage.region,' ',geographyironage.area) AS geography,
-coins.geographyID,
-slides.imageID AS thumbnail,
-slides.filename,
-users.imagedir,
-licenseType.url AS imageCopyright,
-finds.finderID,
-finds.recorderID,
-finds.identifier1ID AS identifierID,
-finds.identifier2ID,
-finders.fullname AS finder,
-primaries.fullname AS identifier,
-secondaries.fullname AS secondaryIdentifier,
-recorders.fullname AS recorder,
-rulers.nomismaID AS rulerNomisma,
-rulers.dbpedia AS rulerDbpedia, rulers.viaf as rulerViaf, rulers.bmID as rulerBM,
-moneyers.dbpediaID AS moneyerDbpedia, moneyers.viaf AS moneyerViaf, moneyers.bmID AS moneyerBM, mints.nomismaID AS nomismaMintID,
-mints.woeid as mintWoeid, mints.geonamesID as mintGeonamesID, mints.bmID AS mintBM, mints.pleiadesID, 
-denominations.nomismaID as nomismaDenominationID, denominations.bmID as denominationBM, denominations.dbpediaID AS denominationDbpedia, 
-p1.ehTerm AS periodFromEH, p2.term AS periodToEH,p3.ehTerm as broadperiodEH, p1.bmID AS periodFromBM, p2.bmID AS periodToBM, p3.bmID as broadperiodBM,
-findspots.countyID, findspots.districtID, findspots.parishID, findspots.woeid, findspots.regionID,osCounties.type as countyType,
-osParishes.type as parishType, osDistricts.type as districtType, findspots.geonamesID
-FROM finds
-LEFT JOIN findspots ON finds.secuid = findspots.findID
-LEFT JOIN coins ON finds.secuid = coins.findID
-LEFT JOIN moneyers ON coins.moneyer = moneyers.id
-LEFT JOIN findofnotereasons ON finds.findofnotereason = findofnotereasons.id
-LEFT JOIN users ON users.id = finds.createdBy
-LEFT JOIN users AS users2 ON users2.id = finds.updatedBy
-LEFT JOIN materials AS mat ON finds.material1 = mat.id
-LEFT JOIN materials AS mat2 ON finds.material2 = mat2.id
-LEFT JOIN decmethods ON finds.decmethod = decmethods.id
-LEFT JOIN decstyles ON finds.decstyle = decstyles.id
-LEFT JOIN manufactures ON finds.manmethod = manufactures.id
-LEFT JOIN surftreatments ON finds.surftreat = surftreatments.id
-LEFT JOIN completeness ON finds.completeness = completeness.id
-LEFT JOIN preservations ON finds.preservation = preservations.id
-LEFT JOIN periods AS p1 ON finds.objdate1period = p1.id
-LEFT JOIN periods AS p2 ON finds.objdate2period = p2.id
-LEFT JOIN periods AS p3 ON finds.broadperiod = p3.term
-LEFT JOIN subperiods AS sub1 ON finds.objdate1subperiod = sub1.id
-LEFT JOIN subperiods AS sub2 ON finds.objdate2subperiod = sub2.id
-LEFT JOIN cultures ON finds.culture = cultures.id
-LEFT JOIN discmethods ON discmethods.id = finds.discmethod
-LEFT JOIN denominations ON denominations.id = coins.denomination
-LEFT JOIN rulers ON rulers.id = coins.ruler_id
-LEFT JOIN rulers AS r2 ON r2.id = coins.ruler2_id
-LEFT JOIN reeceperiods ON coins.reeceID = reeceperiods.id
-LEFT JOIN mints ON mints.id = coins.mint_id
-LEFT JOIN finds_images ON finds_images.find_id = finds.secuid
-LEFT JOIN slides ON finds_images.image_id = slides.secuid
-LEFT JOIN users AS users3 ON users3.id = slides.createdBy
-LEFT JOIN workflowstages ON finds.secwfstage = workflowstages.id
-LEFT JOIN rallies ON finds.rallyID = rallies.id
-LEFT JOIN ironagetribes ON coins.tribe = ironagetribes.id
-LEFT JOIN medievalcategories ON medievalcategories.id = coins.categoryID
-LEFT JOIN medievaltypes ON medievaltypes.id = coins.typeID
-LEFT JOIN geographyironage ON geographyironage.id = coins.geographyID
-LEFT JOIN subsequentActions ON finds.subs_action = subsequentActions.id
-LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
-LEFT JOIN people AS finders ON finds.finderID = finders.secuid
-LEFT JOIN people AS primaries ON finds.identifier1ID = primaries.secuid
-LEFT JOIN people AS secondaries ON finds.identifier2ID = secondaries.secuid
-LEFT JOIN people AS recorders ON finds.recorderID = recorders.secuid
-LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
-LEFT JOIN osParishes ON findspots.parishID = osParishes.osID
-LEFT JOIN osDistricts ON findspots.districtID = osDistricts.osID
-LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
-LEFT JOIN osRegions ON findspots.regionID = osRegions.osID
-LEFT JOIN datequalifiers AS dq1 ON dq1.id = finds.objdate1cert
-LEFT JOIN datequalifiers AS dq2 ON dq2.id = finds.objdate1cert
-LEFT JOIN datequalifiers AS dq3 ON dq3.id = finds.numdate1qual
-LEFT JOIN datequalifiers AS dq4 on dq4.id = finds.numdate2qual
-LEFT JOIN statuses ON coins.status = statuses.id
-LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
-">
+        SELECT
+        DISTINCT(finds.id) as id,
+        CONCAT('finds-',finds.id) AS findIdentifier,
+        finds.old_findID,
+        finds.secuid,
+        findspots.county,
+        findspots.district,
+        findspots.parish,
+        findspots.knownas,
+        osRegions.label as regionName,
+        findspots.gridref,
+        findspots.fourFigure,
+        findspots.geohash,
+        findspots.declat AS latitude,
+        findspots.declong AS longitude,
+        findspots.easting,
+        findspots.northing,
+        findspots.elevation,
+        findspots.fourFigureLat,
+        findspots.fourFigureLon,
+        findspots.gridlen AS 'precision',
+        findspots.accuracy,
+        maporigins.term AS gridSource,
+        CONCAT(declat,',',declong) AS coordinates,
+        finds.institution,
+        finds.objecttype,
+        finds.notes,
+        finds.description,
+        finds.smr_ref AS smrRef,
+        finds.other_ref AS otherRef,
+        finds.culture,
+        cultures.term AS cultureName,
+        cultures.bmCultureID,
+        finds.inscription,
+        finds.classification,
+        finds.subclass As subClassification,
+        finds.treasureID AS TID,
+        finds.treasure,
+        finds.secwfstage AS workflow,
+        finds.material1 AS material,
+        mat.term AS materialTerm,
+        mat.bmID AS primaryMaterialBM,
+        finds.material2 AS secondaryMaterial,
+        mat2.term AS secondaryMaterialTerm,
+        mat2.bmID AS secondaryMaterialBM,
+        finds.curr_loc AS currentLocation,
+        finds.musaccno,
+        finds.rally,
+        findspots.old_findspotid AS findspotcode,
+        finds.rallyID,
+        rallies.rally_name AS rallyName,
+        finds.decstyle,
+        decstyles.term AS decstyleTerm,
+        finds.manmethod AS manufacture,
+        manufactures.term AS manufactureTerm,
+        manufactures.bmID AS bmManufacture,
+        surftreatments.term AS treatment,
+        surftreatments.bmID AS bmTreatment,
+        finds.surftreat AS treatment,
+        finds.preservation,
+        preservations.term AS preservationTerm,
+        preservations.bmID AS bmPreservation,
+        finds.discmethod as discovery,
+        discmethods.method AS discoveryMethod,
+        EXTRACT(YEAR FROM datefound1) AS discovered,
+        finds.subs_action as subsequentAction,
+        subsequentActions.action as subsequentActionTerm,
+        finds.completeness,
+        completeness.term AS completenessTerm,
+        finds.findofnote AS note,
+        findofnotereasons.term as reasonTerm,
+        finds.findofnotereason AS reason,
+        finds.width,
+        finds.height,
+        finds.thickness,
+        finds.diameter,
+        finds.weight,
+        finds.length,
+        finds.quantity,
+        finds.broadperiod,
+        finds.objdate1period AS periodFrom,
+        p1.term AS periodFromName,
+        finds.objdate2period AS periodTo,
+        p2.term AS periodToName,
+        finds.numdate1 AS fromdate,
+        finds.numdate2 AS todate,
+        finds.objdate1subperiod AS fromsubperiod,
+        finds.objdate2subperiod AS tosubperiod,
+        finds.datefound1,
+        finds.datefound2,
+        dq1.term as periodFromQualifier,
+        dq2.term as periodToQualifier,
+        dq3.term as fromDateQualifier,dq4.term as toDateQualifier,
+        sub1.term AS subperiodFrom,
+        sub2.term AS subperiodTo,
+        finds.createdBy AS createdBy,
+        users.fullname AS creator,
+        finds.created,
+        finds.updated,
+        finds.updatedBy,
+        users2.fullname AS updater,
+        finds.dbpediaSlug,
+        coins.ruler_id AS ruler,
+        coins.ruler2_id AS ruler2,
+        rulers.issuer AS rulerName,
+        r2.issuer AS secondaryRulerName,
+        coins.denomination,
+        denominations.denomination AS denominationName,
+        coins.mint_id AS mint, mints.mint_name AS mintName,
+        coins.obverse_description AS obverseDescription,
+        coins.obverse_inscription AS obverseLegend,
+        coins.reverse_description AS reverseDescription,
+        coins.reverse_inscription AS reverseLegend,
+        reverse_mintmark AS mintmark,
+        coins.cciNumber,
+        coins.allen_type AS allenType,
+        coins.mack_type AS mackType,
+        coins.bmc_type AS bmcType,
+        coins.rudd_type AS abcType,
+        coins.va_type AS vaType,
+        coins.reeceID AS reeceID,
+        coins.moneyer,
+        moneyers.name AS moneyerName,
+        coins.tribe,
+        ironagetribes.tribe AS tribeName,
+        ironagetribes.bmTribeID,
+        coins.categoryID as category,
+        medievalcategories.category AS categoryTerm,
+        coins.typeID as type,
+        medievaltypes.type AS typeTerm,
+        coins.die_axis_measurement AS axis,
+        coins.revtypeID as reverse,
+        revtypes.type AS reverseType,
+        coins.status,
+        statuses.term AS statusTerm,
+        CONCAT(geographyironage.region,' ',geographyironage.area) AS geography,
+        coins.geographyID,
+        slides.imageID AS thumbnail,
+        slides.filename,
+        users.imagedir,
+        licenseType.url AS imageCopyright,
+        finds.finderID,
+        finds.recorderID,
+        finds.identifier1ID AS identifierID,
+        finds.identifier2ID,
+        finders.fullname AS finder,
+        primaries.fullname AS identifier,
+        secondaries.fullname AS secondaryIdentifier,
+        recorders.fullname AS recorder,
+        rulers.nomismaID AS rulerNomisma,
+        rulers.dbpedia AS rulerDbpedia,
+        rulers.viaf as rulerViaf,
+        rulers.bmID as rulerBM,
+        moneyers.dbpediaID AS moneyerDbpedia,
+        moneyers.viaf AS moneyerViaf,
+        moneyers.bmID AS moneyerBM,
+        mints.nomismaID AS nomismaMintID,
+        mints.woeid as mintWoeid,
+        mints.geonamesID as mintGeonamesID,
+        mints.bmID AS mintBM,
+        mints.pleiadesID,
+        denominations.nomismaID as nomismaDenominationID,
+        denominations.bmID as denominationBM,
+        denominations.dbpediaID AS denominationDbpedia,
+        p1.ehTerm AS periodFromEH,
+        p2.term AS periodToEH,
+        p3.ehTerm as broadperiodEH,
+        p1.bmID AS periodFromBM,
+        p2.bmID AS periodToBM,
+        p3.bmID as broadperiodBM,
+        findspots.countyID,
+        findspots.districtID,
+        findspots.parishID,
+        findspots.woeid,
+        findspots.regionID,
+        osCounties.type as countyType,
+        osParishes.type as parishType,
+        osDistricts.type as districtType,
+        findspots.geonamesID,
+        sketchFab.modelID AS 3D
+        FROM finds
+        LEFT JOIN findspots ON finds.secuid = findspots.findID
+        LEFT JOIN coins ON finds.secuid = coins.findID
+        LEFT JOIN moneyers ON coins.moneyer = moneyers.id
+        LEFT JOIN findofnotereasons ON finds.findofnotereason = findofnotereasons.id
+        LEFT JOIN users ON users.id = finds.createdBy
+        LEFT JOIN users AS users2 ON users2.id = finds.updatedBy
+        LEFT JOIN materials AS mat ON finds.material1 = mat.id
+        LEFT JOIN materials AS mat2 ON finds.material2 = mat2.id
+        LEFT JOIN decmethods ON finds.decmethod = decmethods.id
+        LEFT JOIN decstyles ON finds.decstyle = decstyles.id
+        LEFT JOIN manufactures ON finds.manmethod = manufactures.id
+        LEFT JOIN surftreatments ON finds.surftreat = surftreatments.id
+        LEFT JOIN completeness ON finds.completeness = completeness.id
+        LEFT JOIN preservations ON finds.preservation = preservations.id
+        LEFT JOIN periods AS p1 ON finds.objdate1period = p1.id
+        LEFT JOIN periods AS p2 ON finds.objdate2period = p2.id
+        LEFT JOIN periods AS p3 ON finds.broadperiod = p3.term
+        LEFT JOIN subperiods AS sub1 ON finds.objdate1subperiod = sub1.id
+        LEFT JOIN subperiods AS sub2 ON finds.objdate2subperiod = sub2.id
+        LEFT JOIN cultures ON finds.culture = cultures.id
+        LEFT JOIN discmethods ON discmethods.id = finds.discmethod
+        LEFT JOIN denominations ON denominations.id = coins.denomination
+        LEFT JOIN rulers ON rulers.id = coins.ruler_id
+        LEFT JOIN rulers AS r2 ON r2.id = coins.ruler2_id
+        LEFT JOIN reeceperiods ON coins.reeceID = reeceperiods.id
+        LEFT JOIN mints ON mints.id = coins.mint_id
+        LEFT JOIN finds_images ON finds_images.find_id = finds.secuid
+        LEFT JOIN slides ON finds_images.image_id = slides.secuid
+        LEFT JOIN users AS users3 ON users3.id = slides.createdBy
+        LEFT JOIN workflowstages ON finds.secwfstage = workflowstages.id
+        LEFT JOIN rallies ON finds.rallyID = rallies.id
+        LEFT JOIN ironagetribes ON coins.tribe = ironagetribes.id
+        LEFT JOIN medievalcategories ON medievalcategories.id = coins.categoryID
+        LEFT JOIN medievaltypes ON medievaltypes.id = coins.typeID
+        LEFT JOIN geographyironage ON geographyironage.id = coins.geographyID
+        LEFT JOIN subsequentActions ON finds.subs_action = subsequentActions.id
+        LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
+        LEFT JOIN people AS finders ON finds.finderID = finders.secuid
+        LEFT JOIN people AS primaries ON finds.identifier1ID = primaries.secuid
+        LEFT JOIN people AS secondaries ON finds.identifier2ID = secondaries.secuid
+        LEFT JOIN people AS recorders ON finds.recorderID = recorders.secuid
+        LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
+        LEFT JOIN osParishes ON findspots.parishID = osParishes.osID
+        LEFT JOIN osDistricts ON findspots.districtID = osDistricts.osID
+        LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
+        LEFT JOIN osRegions ON findspots.regionID = osRegions.osID
+        LEFT JOIN datequalifiers AS dq1 ON dq1.id = finds.objdate1cert
+        LEFT JOIN datequalifiers AS dq2 ON dq2.id = finds.objdate1cert
+        LEFT JOIN datequalifiers AS dq3 ON dq3.id = finds.numdate1qual
+        LEFT JOIN datequalifiers AS dq4 on dq4.id = finds.numdate2qual
+        LEFT JOIN statuses ON coins.status = statuses.id
+        LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
+        LEFT JOIN sketchFab ON finds.secuid = sketchFab.findID
+        ">
             <!--  Identifiers -->
             <field column="findIdentifier" name="findIdentifier"/>
             <field column="id" name="id"/>
@@ -376,6 +401,7 @@ LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
             <field column="thumbnail" name="thumbnail"/>
             <field column="filename" name="filename"/>
             <field column="imagedir" name="imagedir"/>
+            <field column="3D" name="3D" />
 
             <!--  Personal metadata -->
             <field column="finder" name="finder"/>
@@ -432,98 +458,101 @@ LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
         </entity>
         <entity name="hoards" transformer="HTMLStripTransformer"
                 query="
-SELECT
-DISTINCT(hoards.id) as id,
-CONCAT('hoards-',hoards.id) AS findIdentifier,
-hoards.secuid,
-'HOARD' AS objecttype,
-hoards.hoardID AS old_findID,
-hoards.broadperiod,
-hoards.institution,
-hoards.description,
-hoards.secwfstage AS workflow,
-hoards.treasureID AS TID,
-hoards.treasure,
-hoards.numdate1 AS fromdate,
-hoards.numdate2 AS todate,
-hoards.musaccno,
-hoards.curr_loc AS currentLocation,
-hoards.qualityRating,
-hoards.lastRulerID,
-hoards.quantityCoins,
-hoards.quantityContainers,
-hoards.quantityArtefacts,
-hoards.reeceID,
-hoards.terminalreason AS terminalReasonID,
-terminalreason.reason AS terminalReason,
-hoards.datefound1,
-hoards.datefound2,
-hoards.discmethod as discovery,
-discmethods.method AS discoveryMethod,
-EXTRACT(YEAR FROM hoards.datefound1) AS discovered,
-'1' AS quantity,
-hoards.recorderID,
-hoards.identifier1ID AS identifierID,
-hoards.identifier2ID,
-hoards.legacyID,
-primaries.fullname AS identifier,
-secondaries.fullname AS secondaryIdentifier,
-recorders.fullname AS recorder,
-rulers.issuer AS lastRuler,
-findspots.county,
-findspots.district,
-findspots.parish,
-findspots.knownas,
-osRegions.label as regionName,
-findspots.gridref,
-findspots.fourFigure,
-findspots.geohash,
-findspots.declat AS latitude,
-findspots.declong AS longitude,
-findspots.easting,
-findspots.northing,
-findspots.elevation,
-findspots.fourFigureLat,
-findspots.fourFigureLon,
-findspots.gridlen AS 'precision',
-findspots.accuracy,
-maporigins.term AS gridSource,
-CONCAT(declat,',',declong) AS coordinates,
-findspots.old_findspotid AS findspotcode,
-findspots.countyID,
-findspots.districtID,
-findspots.parishID,
-findspots.woeid,
-findspots.regionID,
-osCounties.type as countyType,
-osParishes.type as parishType,
-osDistricts.type as districtType,
-archaeology.sitedateyear1 AS siteDateYear1,
-archaeology.sitedateyear2 AS siteDateYear2,
-archaeology.yearexc1 AS excavatedYear1,
-archaeology.yearexc2 AS excavatedYear2,
-archaeology.description AS archaeologyDescription,
-archaeology.knownsite AS knownSite,
-archaeology.excavated,
-archaeology.sitecontext AS siteContextID
-FROM hoards
-LEFT JOIN findspots ON hoards.secuid = findspots.findID
-LEFT JOIN users ON users.id = hoards.createdBy
-LEFT JOIN users AS users2 ON users2.id = hoards.updatedBy
-LEFT JOIN workflowstages ON hoards.secwfstage = workflowstages.id
-LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
-LEFT JOIN osParishes ON findspots.parishID = osParishes.osID
-LEFT JOIN osDistricts ON findspots.districtID = osDistricts.osID
-LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
-LEFT JOIN osRegions ON findspots.regionID = osRegions.osID
-LEFT JOIN rulers ON rulers.id = hoards.lastRulerID
-LEFT JOIN terminalreason ON hoards.terminalreason = terminalreason.id
-LEFT JOIN people AS primaries ON hoards.identifier1ID = primaries.secuid
-LEFT JOIN people AS secondaries ON hoards.identifier2ID = secondaries.secuid
-LEFT JOIN people AS recorders ON hoards.recorderID = recorders.secuid
-LEFT JOIN discmethods ON discmethods.id = hoards.discmethod
-LEFT JOIN archaeology ON archaeology.hoardID = hoards.secuid
-">
+        SELECT
+        DISTINCT(hoards.id) as id,
+        CONCAT('hoards-',hoards.id) AS findIdentifier,
+        hoards.secuid,
+        'HOARD' AS objecttype,
+        hoards.hoardID AS old_findID,
+        hoards.broadperiod,
+        hoards.institution,
+        hoards.description,
+        hoards.secwfstage AS workflow,
+        hoards.treasureID AS TID,
+        hoards.treasure,
+        hoards.numdate1 AS fromdate,
+        hoards.numdate2 AS todate,
+        hoards.musaccno,
+        hoards.curr_loc AS currentLocation,
+        hoards.qualityRating,
+        hoards.lastRulerID,
+        hoards.quantityCoins,
+        hoards.quantityContainers,
+        hoards.quantityArtefacts,
+        hoards.reeceID,
+        hoards.terminalreason AS terminalReasonID,
+        terminalreason.reason AS terminalReason,
+        hoards.datefound1,
+        hoards.datefound2,
+        hoards.discmethod as discovery,
+        discmethods.method AS discoveryMethod,
+        EXTRACT(YEAR FROM hoards.datefound1) AS discovered,
+        '1' AS quantity,
+        hoards.recorderID,
+        hoards.identifier1ID AS identifierID,
+        hoards.identifier2ID,
+        hoards.legacyID,
+        hoards.created,
+        primaries.fullname AS identifier,
+        secondaries.fullname AS secondaryIdentifier,
+        recorders.fullname AS recorder,
+        rulers.issuer AS lastRuler,
+        findspots.county,
+        findspots.district,
+        findspots.parish,
+        findspots.knownas,
+        osRegions.label as regionName,
+        findspots.gridref,
+        findspots.fourFigure,
+        findspots.geohash,
+        findspots.declat AS latitude,
+        findspots.declong AS longitude,
+        findspots.easting,
+        findspots.northing,
+        findspots.elevation,
+        findspots.fourFigureLat,
+        findspots.fourFigureLon,
+        findspots.gridlen AS 'precision',
+        findspots.accuracy,
+        maporigins.term AS gridSource,
+        CONCAT(declat,',',declong) AS coordinates,
+        findspots.old_findspotid AS findspotcode,
+        findspots.countyID,
+        findspots.districtID,
+        findspots.parishID,
+        findspots.woeid,
+        findspots.regionID,
+        osCounties.type as countyType,
+        osParishes.type as parishType,
+        osDistricts.type as districtType,
+        archaeology.sitedateyear1 AS siteDateYear1,
+        archaeology.sitedateyear2 AS siteDateYear2,
+        archaeology.yearexc1 AS excavatedYear1,
+        archaeology.yearexc2 AS excavatedYear2,
+        archaeology.description AS archaeologyDescription,
+        archaeology.knownsite AS knownSite,
+        archaeology.excavated,
+        archaeology.sitecontext AS siteContextID,
+        sketchFab.modelID AS 3D
+        FROM hoards
+        LEFT JOIN findspots ON hoards.secuid = findspots.findID
+        LEFT JOIN users ON users.id = hoards.createdBy
+        LEFT JOIN users AS users2 ON users2.id = hoards.updatedBy
+        LEFT JOIN workflowstages ON hoards.secwfstage = workflowstages.id
+        LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
+        LEFT JOIN osParishes ON findspots.parishID = osParishes.osID
+        LEFT JOIN osDistricts ON findspots.districtID = osDistricts.osID
+        LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
+        LEFT JOIN osRegions ON findspots.regionID = osRegions.osID
+        LEFT JOIN rulers ON rulers.id = hoards.lastRulerID
+        LEFT JOIN terminalreason ON hoards.terminalreason = terminalreason.id
+        LEFT JOIN people AS primaries ON hoards.identifier1ID = primaries.secuid
+        LEFT JOIN people AS secondaries ON hoards.identifier2ID = secondaries.secuid
+        LEFT JOIN people AS recorders ON hoards.recorderID = recorders.secuid
+        LEFT JOIN discmethods ON discmethods.id = hoards.discmethod
+        LEFT JOIN archaeology ON archaeology.hoardID = hoards.secuid
+        LEFT JOIN sketchFab ON hoards.secuid = sketchFab.findID
+        ">
             <!--  Identifiers -->
             <field column="findIdentifier" name="findIdentifier"/>
             <field column="id" name="id"/>
@@ -680,7 +709,7 @@ LEFT JOIN archaeology ON archaeology.hoardID = hoards.secuid
             <field column="thumbnail" name="thumbnail"/>
             <field column="filename" name="filename"/>
             <field column="imagedir" name="imagedir"/>
-
+            <field column="3D" name="3D" />
             <!--  Personal metadata -->
             <field column="finder" name="finder"/>
             <field column="finderID" name="finderID"/>
