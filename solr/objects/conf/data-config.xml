@@ -7,7 +7,6 @@
                 password=""
                 tinyInt1isBit="false"/>
     <document name="content">
-    <document name="content">
         <entity name="artefacts" transformer="HTMLStripTransformer"
                 query="
         SELECT
