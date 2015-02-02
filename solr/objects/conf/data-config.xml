@@ -99,9 +99,6 @@
         finds.objdate2subperiod AS tosubperiod,
         finds.datefound1,
         finds.datefound2,
-        dq1.term as periodFromQualifier,
-        dq2.term as periodToQualifier,
-        dq3.term as fromDateQualifier,dq4.term as toDateQualifier,
         sub1.term AS subperiodFrom,
         sub2.term AS subperiodTo,
         finds.createdBy AS createdBy,
@@ -188,7 +185,30 @@
         osParishes.type as parishType,
         osDistricts.type as districtType,
         findspots.geonamesID,
-        sketchFab.modelID AS 3D
+        sketchFab.modelID AS 3D,
+        coins.jettonGroup AS jettonGroupID,
+        coins.jettonClass AS jettonClassID,
+        coins.jettonType AS jettonTypeID,
+        jettonGroup.groupName AS jettonGroup,
+        jettonTypes.typeName AS jettonType,
+        jettonClasses.className aS jettonClass,
+        finds.surftreat AS surface,
+        finds.objecttypecert AS objectCertaintyID,
+        cert1.term AS objectCertainty,
+        finds.numdate1qual AS dateFromQualifierID,
+        finds.objdate1cert AS periodFromCertaintyID,
+        cert2.term AS periodFromCertainty,
+        cert3.term AS periodToCertainty,
+        finds.objdate2cert AS periodToCertaintyID,
+        dateCert1.term AS dateFromQualifier,
+        finds.numdate2qual AS dateToQualifierID,
+        dateCert2.term AS dateToQualifier,
+        coins.ruler_qualifier AS rulerQualifierID,
+        cert4.term AS rulerQualifier,
+        coins.denomination_qualifier AS denominationQualifierID,
+        cert5.term AS denominationQualifier,
+        coins.mint_qualifier AS mintQualifierID,
+        cert6.term as mintQualifier
         FROM finds
         LEFT JOIN findspots ON finds.secuid = findspots.findID
         LEFT JOIN coins ON finds.secuid = coins.findID
@@ -236,13 +256,21 @@
         LEFT JOIN osDistricts ON findspots.districtID = osDistricts.osID
         LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
         LEFT JOIN osRegions ON findspots.regionID = osRegions.osID
-        LEFT JOIN datequalifiers AS dq1 ON dq1.id = finds.objdate1cert
-        LEFT JOIN datequalifiers AS dq2 ON dq2.id = finds.objdate1cert
-        LEFT JOIN datequalifiers AS dq3 ON dq3.id = finds.numdate1qual
-        LEFT JOIN datequalifiers AS dq4 on dq4.id = finds.numdate2qual
         LEFT JOIN statuses ON coins.status = statuses.id
         LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
         LEFT JOIN sketchFab ON finds.secuid = sketchFab.findID
+        LEFT JOIN jettonClasses ON coins.jettonClass = jettonClasses.id
+        LEFT JOIN jettonTypes ON coins.jettonType = jettonTypes.id
+        LEFT JOIN jettonGroup ON coins.jettonGroup = jettonGroup.id
+        LEFT JOIN certaintytypes AS cert1 ON finds.objecttypecert = cert1.id
+        LEFT JOIN certaintytypes AS cert2 ON finds.objdate1cert = cert2.id
+        LEFT JOIN certaintytypes AS cert3 ON finds.objdate2cert = cert3.id
+        LEFT JOIN certaintytypes AS cert4 ON coins.ruler_qualifier = cert4.id
+        LEFT JOIN certaintytypes AS cert5 ON coins.mint_qualifier = cert5.id
+        LEFT JOIN certaintytypes AS cert6 ON coins.denomination_qualifier = cert6.id
+        LEFT JOIN datequalifiers AS dateCert1 ON finds.numdate1qual = dateCert1.id
+        LEFT JOIN datequalifiers AS dateCert2 ON finds.numdate2qual = dateCert2.id
+
         ">
             <!--  Identifiers -->
             <field column="findIdentifier" name="findIdentifier"/>
@@ -303,7 +331,7 @@
             <field column="manufacture" name="manufacture"/>
             <field column="manufactureTerm" name="manufactureTerm"/>
             <field column="bmManufacture" name="bmManufacture"/>
-            <field column="treatment" name="surface"/>
+            <field column="surface" name="treatment"/>
             <field column="treatment" name="treatment"/>
             <field column="treatmentTerm" name="treatmentTerm"/>
             <field column="bmTreatment" name="bmTreatment"/>
@@ -330,6 +358,23 @@
             <field column="cultureName" name="cultureName"/>
             <field column="treasure" name="treasure"/>
 
+            <!-- Certainties -->
+            <field column="objectCertainty" name="objectCertainty"/>
+            <field column="objectCertaintyID" name="objectCertaintyID"/>
+            <field column="periodFromCertaintyID" name="periodFromCertaintyID"/>
+            <field column="periodFromCertainty" name="periodFromCertainty"/>
+            <field column="periodToCertaintyID" name="periodToCertaintyID"/>
+            <field column="periodToCertainty" name="periodToCertainty"/>
+            <field column="dateFromQualifierID" name="dateFromQualifierID"/>
+            <field column="dateFromQualifier" name="dateFromQualifier"/>
+            <field column="dateToQualifierID" name="dateToQualifierID"/>
+            <field column="dateToQualifier" name="dateToQualifier"/>
+            <field column="denominationQualifier" name="denominationQualifier"/>
+            <field column="denominationQualifierID" name="denominationQualifierID"/>
+            <field column="mintQualifier" name="mintQualifier"/>
+            <field column="mintQualifierID" name="mintQualifierID"/>
+            <field column="rulerQualifier" name="rulerQualifier"/>
+            <field column="rulerQualifierID" name="rulerQualifierID"/>
 
             <!-- Chronology metadata -->
             <field column="broadperiod" name="broadperiod"/>
@@ -343,10 +388,6 @@
             <field column="tosubperiod" name="tosubperiod"/>
             <field column="datefound1" name="datefound1"/>
             <field column="datefound2" name="datefound2"/>
-            <field column="fromDateQualifier" name="fromDateQualifier"/>
-            <field column="toDateQualifier" name="toDateQualifier"/>
-            <field column="periodToQualifier" name="periodToQualifier"/>
-            <field column="periodFromQualifier" name="periodFromQualifier"/>
             <field column="subperiodTo" name="subperiodTo"/>
             <field column="subperiodFrom" name="subperiodFrom"/>
 
@@ -395,6 +436,12 @@
             <field column="reverseType" name="reverseType"/>
             <field column="status" name="status"/>
             <field column="statusTerm" name="statusTerm"/>
+            <field column="jettonClass" name="jettonClass"/>
+            <field column="jettonClassID" name="jettonClassID"/>
+            <field column="jettonType" name="jettonType"/>
+            <field column="jettonTypeID" name="jettonTypeID"/>
+            <field column="jettonGroup" name="jettonGroup" />
+            <field column="jettonGroupID" name="jettonGroupID" />
 
             <!--  Image data -->
             <field column="thumbnail" name="thumbnail"/>

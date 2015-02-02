@@ -553,6 +553,24 @@
         <field name="length" type="double" indexed="true" stored="true"/>
         <field name="quantity" type="int" indexed="true" stored="true"/>
 
+        <!--Certainties -->
+        <field name="objectCertainty" type="string" indexed="true" stored="true" />
+        <field name="objectCertaintyID" type="int" indexed="true" stored="true" />
+        <field name="rulerQualifier" type="string" indexed="true" stored="true"/>
+        <field name="rulerQualifierID" type="int" indexed="true" stored="true"/>
+        <field name="mintQualifier" type="string" indexed="true" stored="true"/>
+        <field name="mintQualifierID" type="int" indexed="true" stored="true"/>
+        <field name="denominationQualifier" type="string" indexed="true" stored="true"/>
+        <field name="denominationQualifierID" type="int" indexed="true" stored="true"/>
+        <field name="periodFromCertaintyID" type="int" indexed="true" stored="true"/>
+        <field name="periodFromCertainty" type="string" indexed="true" stored="true"/>
+        <field name="periodToCertaintyID" type="int" indexed="true" stored="true"/>
+        <field name="periodToCertainty" type="string" indexed="true" stored="true"/>
+        <field name="dateFromQualifierID" type="int" indexed="true" stored="true"/>
+        <field name="dateFromQualifier" type="string" indexed="true" stored="true"/>
+        <field name="dateToQualifierID" type="int" indexed="true" stored="true"/>
+        <field name="dateToQualifier" type="string" indexed="true" stored="true"/>
+
         <!-- Chronology metadata -->
         <field name="broadperiod" type="string" indexed="true" stored="true"/>
         <field name="periodFrom" type="int" indexed="true" stored="true"/>
@@ -618,6 +636,12 @@
         <field name="reverseType" type="text" indexed="true" stored="true"/>
         <field name="status" type="int" indexed="true" stored="true"/>
         <field name="statusTerm" type="string" indexed="true" stored="true"/>
+        <field name="jettonClass" type="string" indexed="true" stored="true" />
+        <field name="jettonType" type="string" stored="true" indexed="true" />
+        <field name="jettonGroup" type="string" stored="true" indexed="true" />
+        <field name="jettonClassID" type="int" stored="true" indexed="true" />
+        <field name="jettonGroupID" type="int" stored="true" indexed="true" />
+        <field name="jettonTypeID" type="int" stored="true" indexed="true" />
 
         <!--
         Image specific fields
