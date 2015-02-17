@@ -520,7 +520,7 @@
         hoards.numdate2 AS todate,
         hoards.musaccno,
         hoards.curr_loc AS currentLocation,
-        hoards.qualityRating,
+        hoards.qualityrating AS qualityRatingNumismatic,
         hoards.lastRulerID,
         hoards.quantityCoins,
         hoards.quantityContainers,
@@ -568,9 +568,12 @@
         findspots.parishID,
         findspots.woeid,
         findspots.regionID,
+        findspots.qualityrating AS qualityRatingFindspot,
         osCounties.type as countyType,
         osParishes.type as parishType,
         osDistricts.type as districtType,
+        archaeology.period1 AS archaeologyPeriodFrom,
+        archaeology.period2 AS archaeologyPeriodTo,
         archaeology.sitedateyear1 AS siteDateYear1,
         archaeology.sitedateyear2 AS siteDateYear2,
         archaeology.yearexc1 AS excavatedYear1,
@@ -579,6 +582,7 @@
         archaeology.knownsite AS knownSite,
         archaeology.excavated,
         archaeology.sitecontext AS siteContextID,
+        archaeology.contextualrating AS qualityRatingArchaeological,
         sketchFab.modelID AS 3D
         FROM hoards
         LEFT JOIN findspots ON hoards.secuid = findspots.findID
@@ -595,6 +599,8 @@
         LEFT JOIN people AS primaries ON hoards.identifier1ID = primaries.secuid
         LEFT JOIN people AS secondaries ON hoards.identifier2ID = secondaries.secuid
         LEFT JOIN people AS recorders ON hoards.recorderID = recorders.secuid
+        LEFT JOIN periods AS p4 ON archaeology.period1 = p4.id
+        LEFT JOIN periods AS p5 ON archaeology.period2 = p5.id
         LEFT JOIN discmethods ON discmethods.id = hoards.discmethod
         LEFT JOIN archaeology ON archaeology.hoardID = hoards.secuid
         LEFT JOIN sketchFab ON hoards.secuid = sketchFab.findID
@@ -809,17 +815,21 @@
             <field column="broadperiodBM" name="broadperiodBM"/>
 
             <!-- Hoard specific -->
-            <field column="qualityRating" name="qualityRating" />
+            <field column="qualityRatingNumismatic" name="qualityRatingNumismatic" />
+            <field column="qualityRatingArchaeological" name="qualityRatingArchaeological" />
+            <field column="qualityRatingFindspot" name="qualityRatingFindspot" />
             <field column="lastRulerID" name="lastRulerID" />
             <field column="lastRuler" name="lastRuler" />
             <field column="quantityCoins" name="quantityCoins" />
             <field column="quantityContainers" name="quantityContainers" />
-            <field column="quantityAftefacts" name="quantityArtefacts" />
+            <field column="quantityArtefacts" name="quantityArtefacts" />
             <field column="terminalyear1" name="terminalyear1" />
             <field column="terminalyear2" name="terminalyear2" />
             <field column="terminalReasonID" name="terminalReasonID" />
             <field column="terminalReason" name="terminalReason" />
             <field column="legacyID" name="legacyID" />
+            <field column="archaeologyPeriodFrom" name="archaeologyPeriodFrom" />
+            <field column="archaeologyPeriodTo" name="archaeologyPeriodTo" />
             <field column="siteDateYear1" name="siteDateYear1" />
             <field column="siteDateYear2" name="siteDateYear2" />
             <field column="featureDateYear1" name="featureDateYear1" />

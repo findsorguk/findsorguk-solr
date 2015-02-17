@@ -706,10 +706,14 @@
         <field name="quantityContainers" type="int" indexed="true" stored="true" />
         <field name="terminalyear1" type="int" indexed="true" stored="true" />
         <field name="terminalyear2" type="int" indexed="true" stored="true" />
-        <field name="qualityRating" type="int" indexed="true" stored="true" />
+        <field name="qualityRatingNumismatic" type="int" indexed="true" stored="true" />
+        <field name="qualityRatingArchaeological" type="int" indexed="true" stored="true" />
+        <field name="qualityRatingFindspot" type="int" indexed="true" stored="true" />
         <field name="terminalReasonID" type="int" indexed="true" stored="true" />
         <field name="terminalReason" type="string" indexed="true" stored="true" />
         <field name="legacyID" type="int" indexed="true" stored="true" />
+        <field name="archaeologyPeriodFrom" type="int" indexed="true" stored="true" />
+        <field name="archaeologyPeriodTo" type="int" indexed="true" stored="true" />
         <field name="siteDateYear1" type="int" indexed="true" stored="true" />
         <field name="siteDateYear2" type="int" indexed="true" stored="true" />
         <field name="featureDateYear1" type="int" indexed="true" stored="true" />
