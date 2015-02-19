@@ -513,11 +513,26 @@
         hoards.broadperiod,
         hoards.institution,
         hoards.description,
+        hoards.notes,
         hoards.secwfstage AS workflow,
         hoards.treasureID AS TID,
         hoards.treasure,
+        hoards.rally,
+        hoards.rallyID,
+        rallies.rally_name AS rallyName,
+        hoards.period1 AS periodFrom,
+        p4.term AS periodFromName,
+        hoards.period2 AS periodTo,
+        p5.term AS periodToName,
         hoards.numdate1 AS fromdate,
         hoards.numdate2 AS todate,
+        hoards.terminalyear1 AS fromTerminalYear,
+        hoards.terminalyear2 AS toTerminalYear,
+        hoards.findofnote AS note,
+        findofnotereasons.term as reasonTerm,
+        hoards.findofnotereason AS reason,
+        hoards.other_ref AS otherRef,
+        hoards.smrrefno AS smrRef,
         hoards.musaccno,
         hoards.curr_loc AS currentLocation,
         hoards.qualityrating AS qualityRatingNumismatic,
@@ -585,10 +600,13 @@
         archaeology.contextualrating AS qualityRatingArchaeological,
         sketchFab.modelID AS 3D
         FROM hoards
+        LEFT JOIN periods AS p4 ON hoards.period1 = p4.id
+        LEFT JOIN periods AS p5 ON hoards.period2 = p5.id
         LEFT JOIN findspots ON hoards.secuid = findspots.findID
         LEFT JOIN users ON users.id = hoards.createdBy
         LEFT JOIN users AS users2 ON users2.id = hoards.updatedBy
         LEFT JOIN workflowstages ON hoards.secwfstage = workflowstages.id
+        LEFT JOIN findofnotereasons ON hoards.findofnotereason = findofnotereasons.id
         LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
         LEFT JOIN osParishes ON findspots.parishID = osParishes.osID
         LEFT JOIN osDistricts ON findspots.districtID = osDistricts.osID
@@ -601,6 +619,7 @@
         LEFT JOIN people AS recorders ON hoards.recorderID = recorders.secuid
         LEFT JOIN periods AS p4 ON archaeology.period1 = p4.id
         LEFT JOIN periods AS p5 ON archaeology.period2 = p5.id
+        LEFT JOIN rallies ON hoards.rallyID = rallies.id
         LEFT JOIN discmethods ON discmethods.id = hoards.discmethod
         LEFT JOIN archaeology ON archaeology.hoardID = hoards.secuid
         LEFT JOIN sketchFab ON hoards.secuid = sketchFab.findID
@@ -823,8 +842,8 @@
             <field column="quantityCoins" name="quantityCoins" />
             <field column="quantityContainers" name="quantityContainers" />
             <field column="quantityArtefacts" name="quantityArtefacts" />
-            <field column="terminalyear1" name="terminalyear1" />
-            <field column="terminalyear2" name="terminalyear2" />
+            <field column="fromTerminalYear" name="fromTerminalYear" />
+            <field column="toTerminalYear" name="toTerminalYear" />
             <field column="terminalReasonID" name="terminalReasonID" />
             <field column="terminalReason" name="terminalReason" />
             <field column="legacyID" name="legacyID" />

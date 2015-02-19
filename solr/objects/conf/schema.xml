@@ -704,8 +704,8 @@
         <field name="quantityCoins" type="int" indexed="true" stored="true" />
         <field name="quantityArtefacts" type="int" indexed="true" stored="true" />
         <field name="quantityContainers" type="int" indexed="true" stored="true" />
-        <field name="terminalyear1" type="int" indexed="true" stored="true" />
-        <field name="terminalyear2" type="int" indexed="true" stored="true" />
+        <field name="fromTerminalYear" type="int" indexed="true" stored="true" />
+        <field name="toTerminalYear" type="int" indexed="true" stored="true" />
         <field name="qualityRatingNumismatic" type="int" indexed="true" stored="true" />
         <field name="qualityRatingArchaeological" type="int" indexed="true" stored="true" />
         <field name="qualityRatingFindspot" type="int" indexed="true" stored="true" />
