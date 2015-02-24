@@ -2,8 +2,8 @@
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
                 batchSize="-1"
-                url="jdbc:mysql://localhost/{db}"
-                user=""
+                url="jdbc:mysql://localhost:3306/antiquitiesTwo"
+                user="root"
                 password=""
                 tinyInt1isBit="false"/>
     <document name="content">
@@ -588,7 +588,9 @@
         osParishes.type as parishType,
         osDistricts.type as districtType,
         archaeology.period1 AS archaeologyPeriodFrom,
+        p6.term AS archaeologyPeriodFromName,
         archaeology.period2 AS archaeologyPeriodTo,
+        p7.term AS archaeologyPeriodToName,
         archaeology.sitedateyear1 AS siteDateYear1,
         archaeology.sitedateyear2 AS siteDateYear2,
         archaeology.yearexc1 AS excavatedYear1,
@@ -617,11 +619,11 @@
         LEFT JOIN people AS primaries ON hoards.identifier1ID = primaries.secuid
         LEFT JOIN people AS secondaries ON hoards.identifier2ID = secondaries.secuid
         LEFT JOIN people AS recorders ON hoards.recorderID = recorders.secuid
-        LEFT JOIN periods AS p4 ON archaeology.period1 = p4.id
-        LEFT JOIN periods AS p5 ON archaeology.period2 = p5.id
+        LEFT JOIN archaeology ON archaeology.hoardID = hoards.secuid
+        LEFT JOIN periods AS p6 ON archaeology.period1 = p6.id
+        LEFT JOIN periods AS p7 ON archaeology.period2 = p7.id
         LEFT JOIN rallies ON hoards.rallyID = rallies.id
         LEFT JOIN discmethods ON discmethods.id = hoards.discmethod
-        LEFT JOIN archaeology ON archaeology.hoardID = hoards.secuid
         LEFT JOIN sketchFab ON hoards.secuid = sketchFab.findID
         ">
             <!--  Identifiers -->
