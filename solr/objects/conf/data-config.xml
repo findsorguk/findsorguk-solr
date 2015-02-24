@@ -2,8 +2,8 @@
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
                 batchSize="-1"
-                url="jdbc:mysql://localhost:3306/antiquitiesTwo"
-                user="root"
+                url="jdbc:mysql://localhost/{db}"
+                user=""
                 password=""
                 tinyInt1isBit="false"/>
     <document name="content">
@@ -598,7 +598,14 @@
         archaeology.description AS archaeologyDescription,
         archaeology.knownsite AS knownSite,
         archaeology.excavated,
-        archaeology.sitecontext AS siteContextID,
+        archaeology.sitecontext AS siteClassID,
+        archsiteclass.siteclass AS siteClass,
+        archaeology.sitetype AS siteContextID,
+        archsitetype.sitetype AS siteContext,
+        archaeology.feature AS featureID,
+        archfeature.feature AS feature,
+        archaeology.featuredateyear1 AS featureDateYear1,
+        archaeology.featuredateyear2 AS featureDateYear2,
         archaeology.contextualrating AS qualityRatingArchaeological,
         sketchFab.modelID AS 3D
         FROM hoards
@@ -624,6 +631,9 @@
         LEFT JOIN periods AS p7 ON archaeology.period2 = p7.id
         LEFT JOIN rallies ON hoards.rallyID = rallies.id
         LEFT JOIN discmethods ON discmethods.id = hoards.discmethod
+        LEFT JOIN archsiteclass ON archaeology.sitecontext = archsiteclass.id
+        LEFT JOIN archsitetype ON archaeology.sitetype = archsitetype.id
+        LEFT JOIN archfeature ON archaeology.feature = archfeature.id
         LEFT JOIN sketchFab ON hoards.secuid = sketchFab.findID
         ">
             <!--  Identifiers -->
@@ -860,7 +870,12 @@
             <field column="archaeologyDescription" name="archaeologyDescription" />
             <field column="knownSite" name="knownSite" />
             <field column="excavated" name="excavated" />
+            <field column="siteClassID" name="siteClassID" />
             <field column="siteContextID" name="siteContextID" />
+            <field column="featureID" name="featureID" />
+            <field column="siteClass" name="siteClass" />
+            <field column="siteContext" name="siteContext" />
+            <field column="feature" name="feature" />
         </entity>
 
     </document>

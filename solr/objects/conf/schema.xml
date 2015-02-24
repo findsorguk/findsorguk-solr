@@ -723,7 +723,12 @@
         <field name="archaeologyDescription" type="text" indexed="true" stored="true" />
         <field name="knownSite" type="int" indexed="true" stored="true" />
         <field name="excavated" type="int" indexed="true" stored="true" />
+        <field name="siteClassID" type="int" indexed="true" stored="true" />
+        <field name="siteClass" type="string" indexed="true" stored="true" />
         <field name="siteContextID" type="int" indexed="true" stored="true" />
+        <field name="siteContext" type="string" indexed="true" stored="true" />
+        <field name="featureID" type="int" indexed="true" stored="true" />
+        <field name="feature" type="string" indexed="true" stored="true" />
 
         <!--  Period linked data -->
         <field name="broadperiodEH" type="string" indexed="true" stored="true"/>
