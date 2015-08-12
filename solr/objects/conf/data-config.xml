@@ -208,7 +208,9 @@
         coins.denomination_qualifier AS denominationQualifierID,
         cert5.term AS denominationQualifier,
         coins.mint_qualifier AS mintQualifierID,
-        cert6.term as mintQualifier
+        cert6.term as mintQualifier,
+        coins.ricID,
+        coins.rrcID
         FROM finds
         LEFT JOIN findspots ON finds.secuid = findspots.findID
         LEFT JOIN coins ON finds.secuid = coins.findID
@@ -442,6 +444,8 @@
             <field column="jettonTypeID" name="jettonTypeID"/>
             <field column="jettonGroup" name="jettonGroup" />
             <field column="jettonGroupID" name="jettonGroupID" />
+            <field column="rrcID" name="rrcID" />
+            <field column="ricID" name="ricID" />
 
             <!--  Image data -->
             <field column="thumbnail" name="thumbnail"/>

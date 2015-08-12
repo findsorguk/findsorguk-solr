@@ -685,7 +685,8 @@
         <field name="nomismaDenominationID" type="string" indexed="true" stored="true"/>
         <field name="denominationBM" type="int" indexed="true" stored="true"/>
         <field name="denominationDbpedia" type="string" indexed="true" stored="true"/>
-
+        <field name="rrcID" type="string" indexed="true" stored="true" />
+        <field name="ricID" type="string" indexed="true" stored="true" />
 
         <!--  Findspot linked data  -->
         <field name="districtID" type="int" indexed="true" stored="true"/>
@@ -850,6 +851,8 @@
     <copyField source="abcType" dest="text"/>
     <copyField source="vaType" dest="text"/>
     <copyField source="moneyerName" dest="text"/>
+    <copyField source="rrcID" dest="text" />
+    <copyField source="ricID" dest="text" />
 
     <!-- Reference numbers -->
     <copyField source="county" dest="text"/>
