@@ -9,7 +9,7 @@
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
     <xsl:param name="url">
-        <xsl:value-of select="'https://finds.org.uk/database/artefacts/record/id'"/>
+        <xsl:value-of select="'https://finds.org.uk/database/artefacts/record/id/'"/>
     </xsl:param>
 
     <xsl:param name="thumbnail">
