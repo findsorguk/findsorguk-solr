@@ -36,9 +36,7 @@
             <dcterms:title>
                 <xsl:choose>
                     <xsl:when test="str[@name='moneyerName']">
-                        <xsl:value-of select="str[@name='old_findID']"/>: A Republican coin issued by
-                        <xsl:value-of select="str[@name='moneyerName']"/> RRC ID:
-                        <xsl:value-of select="str[@name='rrcID']"/>
+                        <xsl:value-of select="str[@name='old_findID']"/>: A Republican coin issued by <xsl:value-of select="str[@name='moneyerName']"/> RRC ID:<xsl:value-of select="str[@name='rrcID']"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="str[@name='old_findID']"/>: A Republican coin with an unrecorded/uncertain
@@ -99,8 +97,7 @@
                 <xsl:if test="str[@name='gridref']">
                     <nmo:hasFindspot>
                         <rdf:Description xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
-                            <xsl:attribute name="rdf:about">http://data.ordnancesurvey.co.uk/doc/7000000000<xsl:value-of
-                                    select="format-number(int[@name='parishID'],'000000')"/>
+                            <xsl:attribute name="rdf:about">http://data.ordnancesurvey.co.uk/doc/7000000000<xsl:value-of select="format-number(int[@name='parishID'],'000000')"/>
                             </xsl:attribute>
                             <geo:lat>
                                 <xsl:value-of select="double[@name='fourFigureLat']"/>
