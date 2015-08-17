@@ -51,10 +51,6 @@
                 <xsl:value-of select="str[@name='old_findID']"/>
             </dcterms:identifier>
 
-            <nmo:hasCollection>
-                <xsl:attribute name="rdf:resource">http://nomisma.org/id/pas</xsl:attribute>
-            </nmo:hasCollection>
-
             <xsl:if test="str[@name='rrcID']">
                 <nmo:hasTypeSeriesItem>
                     <xsl:attribute name="rdf:resource">http://numismatics.org/ocre/id/<xsl:value-of
