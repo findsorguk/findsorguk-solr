@@ -51,7 +51,7 @@
 
             <xsl:if test="str[@name='rrcID']">
                 <nmo:hasTypeSeriesItem>
-                    <xsl:attribute name="rdf:resource">http://numismatics.org/ocre/id/<xsl:value-of
+                    <xsl:attribute name="rdf:resource">http://numismatics.org/crro/id/<xsl:value-of
                             select="str[@name='rrcID']"/>
                     </xsl:attribute>
                 </nmo:hasTypeSeriesItem>
