@@ -88,17 +88,13 @@
             <xsl:if test="int[@name='thumbnail']">
                 <xsl:if test="str[@name='filename']">
                     <foaf:depiction>
-                        <xsl:attribute name="rdf:resource">
-                            <xsl:value-of select="$images"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of
-                                select="str[@name='filename']"/>
-                        </xsl:attribute>
+                        <xsl:attribute name="rdf:resource"><xsl:value-of select="$images"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of
+                                select="str[@name='filename']"/></xsl:attribute>
                     </foaf:depiction>
                 </xsl:if>
                 <xsl:if test="int[@name='thumbnail']">
                     <foaf:thumbnail>
-                        <xsl:attribute name="rdf:resource">
-                            <xsl:value-of select="$thumbnail"/><xsl:value-of select="int[@name='thumbnail']"/>.jpg
-                        </xsl:attribute>
+                        <xsl:attribute name="rdf:resource"><xsl:value-of select="$thumbnail"/><xsl:value-of select="int[@name='thumbnail']"/>.jpg</xsl:attribute>
                     </foaf:thumbnail>
                 </xsl:if>
             </xsl:if>
