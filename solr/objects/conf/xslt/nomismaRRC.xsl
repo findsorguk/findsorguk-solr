@@ -16,10 +16,6 @@
         <xsl:value-of select="'https://finds.org.uk/images/thumbnails/'"/>
     </xsl:param>
 
-    <xsl:param name="images">
-        <xsl:value-of select="'https://finds.org.uk/images/'"/>
-    </xsl:param>
-
     <xsl:template match="/">
         <rdf:RDF>
             <xsl:apply-templates select="response/result/doc"/>
@@ -82,7 +78,7 @@
             <xsl:if test="int[@name='thumbnail']">
                 <xsl:if test="str[@name='filename']">
                     <foaf:depiction>
-                        <xsl:attribute name="rdf:resource"><xsl:value-of select="$images"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of
+                        <xsl:attribute name="rdf:resource"><xsl:value-of select="$url"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of
                                 select="str[@name='filename']"/></xsl:attribute>
                     </foaf:depiction>
                 </xsl:if>
