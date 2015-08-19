@@ -105,6 +105,7 @@
                             <geo:long>
                                 <xsl:value-of select="double[@name='fourFigureLon']"/>
                             </geo:long>
+                            <foaf:name><xsl:value-of select="str[@name='parish']"/></foaf:name>
                         </rdf:Description>
                     </nmo:hasFindspot>
                 </xsl:if>
