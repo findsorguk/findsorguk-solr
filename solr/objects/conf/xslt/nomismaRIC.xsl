@@ -35,7 +35,7 @@
 
             <dcterms:title>
                 <xsl:choose>
-                    <xsl:when test="str[@name='moneyerName']">
+                    <xsl:when test="str[@name='rulerName']">
                         <xsl:value-of select="str[@name='old_findID']"/>: A Roman coin issued by <xsl:value-of select="str[@name='rulerName']"/> RIC ID:<xsl:value-of select="str[@name='ricID']"/>
                     </xsl:when>
                     <xsl:otherwise>
