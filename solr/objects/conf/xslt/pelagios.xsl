@@ -72,16 +72,12 @@
             </foaf:homepage>
             <xsl:choose>
                 <xsl:when test="int[@name='thumbnail']">
-                    <foaf:thumbnail>
-                        <xsl:value-of select="$thumbnail"/><xsl:value-of select="int[@name='thumbnail']"/>.jpg
-                    </foaf:thumbnail>
+                    <foaf:thumbnail><xsl:value-of select="$thumbnail"/><xsl:value-of select="int[@name='thumbnail']"/>.jpg</foaf:thumbnail>
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
                 <xsl:when test="str[@name='filename']">
-                    <foaf:depiction>
-                        <xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="encode-for-uri(str[@name='filename'])"/>
-                    </foaf:depiction>
+                    <foaf:depiction><xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="encode-for-uri(str[@name='filename'])"/></foaf:depiction>
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
