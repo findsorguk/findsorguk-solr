@@ -35,7 +35,9 @@
         <xsl:attribute name="rdf:about">
             <xsl:value-of select="$base"/>rdf/pelagios.rdf#agents/me
         </xsl:attribute>
-        <foaf:name><xsl:value-of select="$base"/></foaf:name>
+        <foaf:name>
+            <xsl:value-of select="$base"/>
+        </foaf:name>
     </foaf:Organization>
 
     <xsl:template match="/">
@@ -52,8 +54,7 @@
             <dcterms:title>
                 <xsl:choose>
                     <xsl:when test="str[@name='rulerName']">
-                        <xsl:value-of select="str[@name='old_findID']"/>: A coin issued by
-                        <xsl:value-of select="str[@name='rulerName']"/>
+                        <xsl:value-of select="str[@name='old_findID']"/>: A coin issued by <xsl:value-of select="str[@name='rulerName']"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="str[@name='old_findID']"/>: A coin with an unrecorded/uncertain issuer.
@@ -70,9 +71,29 @@
             </foaf:homepage>
             <xsl:choose>
                 <xsl:when test="int[@name='thumbnail']">
-                    <foaf:thumbnail><xsl:value-of select="$thumbnail" /><xsl:value-of
-                            select="int[@name='thumbnail']"/>.jpg
+                    <foaf:thumbnail>
+                        <xsl:value-of select="$thumbnail"/><xsl:value-of select="int[@name='thumbnail']"/>.jpg
                     </foaf:thumbnail>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="int[@name='filename']">
+                    <foaf:depiction>
+                        <xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="str[@name='filename']"/>
+                    </foaf:depiction>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="int[@name='fromdate']">
+                    <xsl:when test="int[@name='todate']">
+                        <dcterms:temporal><xsl:value-of select="int[@name='fromdate']"/>/<xsl:value-of select="int[@name='todate']"/>
+                        </dcterms:temporal>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <dcterms:temporal>
+                            <xsl:value-of select="int[@name='fromdate']"/>
+                        </dcterms:temporal>
+                    </xsl:otherwise>
                 </xsl:when>
             </xsl:choose>
         </pelagios:AnnotatedThing>
@@ -94,7 +115,9 @@
                     <xsl:value-of select="$base"/>#agents/me
                 </xsl:attribute>
             </oa:annotatedBy>
-            <oa:annotatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"><xsl:value-of select="date[@name='created']"/></oa:annotatedAt>
+            <oa:annotatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">
+                <xsl:value-of select="date[@name='created']"/>
+            </oa:annotatedAt>
         </oa:Annotation>
     </xsl:template>
 </xsl:stylesheet>
