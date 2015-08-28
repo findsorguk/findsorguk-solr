@@ -1,35 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs xsl" version="2.0"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:oac="http://www.openannotation.org/ns/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
-	<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                exclude-result-prefixes="xs xsl" version="2.0"
+                xmlns:dcterms="http://purl.org/dc/terms/"
+                xmlns:owl="http://www.w3.org/2002/07/owl#"
+                xmlns:foaf="http://xmlns.com/foaf/0.1/"
+                xmlns:nm="http://nomisma.org/id/"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns:oa="http://www.w3.org/ns/oa#"
+                xmlns:pelagios="http://pelagios.github.io/vocab/terms#"
+                xmlns:relations="http://pelagios.github.io/vocab/relations#"
+                xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+        >
+    <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
-	<xsl:template match="/">
-		<rdf:RDF>
-			<xsl:apply-templates select="response/result/doc"/>
-		</rdf:RDF>
-	</xsl:template>
 
-	<xsl:template match="doc">
-		<oac:Annotation rdf:about="http://finds.org.uk/rdf/pelagios.rdf#{str[@name='old_findID']}">
-			<dcterms:title>
-				<xsl:choose>
-				<xsl:when test="str[@name='rulerName']"> 
-			    	<xsl:value-of select="str[@name='old_findID']"/>: A coin issued by <xsl:value-of select="str[@name='rulerName']"/>
-			    </xsl:when> 
-     		     <xsl:otherwise>
-					<xsl:value-of select="str[@name='old_findID']"/>: A coin with an unrecorded/uncertain issuer.</xsl:otherwise> 
-			 	</xsl:choose>
-			</dcterms:title>
-			<xsl:for-each select="int[@name='pleiadesID']">
-				<oac:hasBody rdf:resource="http://pleiades.stoa.org/places/{.}#this"/>
-			</xsl:for-each>
-			<owl:sameAs rdf:resource="http://nomisma.org/id/{str[@name='nomismaMintID']}"/>
-			<oac:hasTarget rdf:resource="http://finds.org.uk/database/artefacts/record/id/{int[@name='id']}"/>
-			<xsl:choose>
-				<xsl:when test="int[@name='thumbnail']"> 
-				<foaf:thumbnail>http://finds.org.uk/images/thumbnails/<xsl:value-of select="int[@name='thumbnail']"/>.jpg</foaf:thumbnail>
-				</xsl:when>
-			</xsl:choose>
-		</oac:Annotation>
-	</xsl:template>
+    <xsl:param name="url">
+        <xsl:value-of select="'https://finds.org.uk/database/artefacts/record/id/'"/>
+    </xsl:param>
+
+    <xsl:param name="thumbnail">
+        <xsl:value-of select="'https://finds.org.uk/images/thumbnails/'"/>
+    </xsl:param>
+
+    <xsl:param name="base">
+        <xsl:value-of select="'https://finds.org.uk/'"/>
+    </xsl:param>
+
+    <xsl:param name="dump">
+        <xsl:value-of select="'https://finds.org.uk/rdf/pelagios.rdf'"/>
+    </xsl:param>
+
+
+    <foaf:Organization>
+        <xsl:attribute name="rdf:about">
+            <xsl:value-of select="$base"/>rdf/pelagios.rdf#agents/me
+        </xsl:attribute>
+        <foaf:name><xsl:value-of select="$base"/></foaf:name>
+    </foaf:Organization>
+
+    <xsl:template match="/">
+        <rdf:RDF>
+            <xsl:apply-templates select="response/result/doc"/>
+        </rdf:RDF>
+    </xsl:template>
+
+    <xsl:template match="doc">
+        <pelagios:AnnotatedThing>
+            <xsl:attribute name="rdf:about">
+                <xsl:value-of select="$base"/><xsl:value-of select="int[@name='id']"/>
+            </xsl:attribute>
+            <dcterms:title>
+                <xsl:choose>
+                    <xsl:when test="str[@name='rulerName']">
+                        <xsl:value-of select="str[@name='old_findID']"/>: A coin issued by
+                        <xsl:value-of select="str[@name='rulerName']"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="str[@name='old_findID']"/>: A coin with an unrecorded/uncertain issuer.
+                    </xsl:otherwise>
+                </xsl:choose>
+            </dcterms:title>
+            <foaf:homepage>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:value-of select="$url"/><xsl:value-of select="int[@name='id']"/>
+                </xsl:attribute>
+            </foaf:homepage>
+            <xsl:choose>
+                <xsl:when test="int[@name='thumbnail']">
+                    <foaf:thumbnail>http://finds.org.uk/images/thumbnails/<xsl:value-of
+                            select="int[@name='thumbnail']"/>.jpg
+                    </foaf:thumbnail>
+                </xsl:when>
+            </xsl:choose>
+        </pelagios:AnnotatedThing>
+        <oa:Annotation>
+            <xsl:attribute name="rdf:about">
+                <xsl:value-of select="$base"/>#<xsl:value-of select="int[@name='id']"/>/annotation/001
+            </xsl:attribute>
+            <xsl:for-each select="int[@name='pleiadesID']">
+                <oa:hasBody rdf:resource="http://pleiades.stoa.org/places/{.}#this"/>
+            </xsl:for-each>
+            <oa:hasTarget>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:value-of select="$url"/><xsl:value-of select="int[@name='id']"/>
+                </xsl:attribute>
+            </oa:hasTarget>
+            <pelagios:relation rdf:resource="http://pelagios.github.io/vocab/relations#attestsTo"/>
+            <oa:annotatedBy>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:value-of select="$base"/>#agents/me
+                </xsl:attribute>
+            </oa:annotatedBy>
+            <oa:annotatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"><xsl:value-of select="str[@name='created']"</oa:annotatedAt>
+        </oa:Annotation>
+    </xsl:template>
 </xsl:stylesheet>
