@@ -98,15 +98,12 @@
         </pelagios:AnnotatedThing>
         <oa:Annotation>
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$base"/>#<xsl:value-of select="int[@name='id']"/>/annotations/001
-            </xsl:attribute>
+                <xsl:value-of select="$base"/>#<xsl:value-of select="int[@name='id']"/>/annotations/001</xsl:attribute>
             <xsl:for-each select="int[@name='pleiadesID']">
                 <oa:hasBody rdf:resource="http://pleiades.stoa.org/places/{.}#this"/>
             </xsl:for-each>
             <oa:hasTarget>
-                <xsl:attribute name="rdf:resource">
-                    <xsl:value-of select="$url"/><xsl:value-of select="int[@name='id']"/>
-                </xsl:attribute>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$url"/><xsl:value-of select="int[@name='id']"/></xsl:attribute>
             </oa:hasTarget>
             <pelagios:relation rdf:resource="http://pelagios.github.io/vocab/relations#attestsTo"/>
             <oa:annotatedBy>
