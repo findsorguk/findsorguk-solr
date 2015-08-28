@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 exclude-result-prefixes="xs xsl" version="2.0"
                 xmlns:dcterms="http://purl.org/dc/terms/"
+                xmlns:fn="http://www.w3.org/2005/xpath-functions"
                 xmlns:owl="http://www.w3.org/2002/07/owl#"
                 xmlns:foaf="http://xmlns.com/foaf/0.1/"
                 xmlns:nm="http://nomisma.org/id/"
@@ -77,23 +78,25 @@
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
-                <xsl:when test="int[@name='filename']">
+                <xsl:when test="str[@name='filename']">
                     <foaf:depiction>
-                        <xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="str[@name='filename']"/>
+                        <xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="system-property('xsl:version')"/>
                     </foaf:depiction>
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
                 <xsl:when test="int[@name='fromdate']">
-                    <xsl:when test="int[@name='todate']">
-                        <dcterms:temporal><xsl:value-of select="int[@name='fromdate']"/>/<xsl:value-of select="int[@name='todate']"/>
-                        </dcterms:temporal>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <dcterms:temporal>
-                            <xsl:value-of select="int[@name='fromdate']"/>
-                        </dcterms:temporal>
-                    </xsl:otherwise>
+            <xsl:choose>
+                <xsl:when test="int[@name='todate']">
+                    <dcterms:temporal><xsl:value-of select="int[@name='fromdate']"/>/<xsl:value-of select="int[@name='todate']"/>
+                    </dcterms:temporal>
+                </xsl:when>
+                <xsl:otherwise>
+                    <dcterms:temporal>
+                        <xsl:value-of select="int[@name='fromdate']"/>
+                    </dcterms:temporal>
+                </xsl:otherwise>
+            </xsl:choose>
                 </xsl:when>
             </xsl:choose>
         </pelagios:AnnotatedThing>
