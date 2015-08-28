@@ -80,7 +80,7 @@
             <xsl:choose>
                 <xsl:when test="str[@name='filename']">
                     <foaf:depiction>
-                        <xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="system-property('xsl:version')"/>
+                        <xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="encode-for-uri(str[@name='filename'])"/>
                     </foaf:depiction>
                 </xsl:when>
             </xsl:choose>
@@ -114,9 +114,7 @@
             </oa:hasTarget>
             <pelagios:relation rdf:resource="http://pelagios.github.io/vocab/relations#attestsTo"/>
             <oa:annotatedBy>
-                <xsl:attribute name="rdf:resource">
-                    <xsl:value-of select="$base"/>#agents/me
-                </xsl:attribute>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$base"/>#agents/me</xsl:attribute>
             </oa:annotatedBy>
             <oa:annotatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">
                 <xsl:value-of select="date[@name='created']"/>
