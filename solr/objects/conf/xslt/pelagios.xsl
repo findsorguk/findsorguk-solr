@@ -5,7 +5,6 @@
                 xmlns:owl="http://www.w3.org/2002/07/owl#"
                 xmlns:foaf="http://xmlns.com/foaf/0.1/"
                 xmlns:nm="http://nomisma.org/id/"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:oa="http://www.w3.org/ns/oa#"
                 xmlns:pelagios="http://pelagios.github.io/vocab/terms#"
@@ -48,7 +47,7 @@
     <xsl:template match="doc">
         <pelagios:AnnotatedThing>
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$base"/><xsl:value-of select="int[@name='id']"/>
+                <xsl:value-of select="$url"/><xsl:value-of select="int[@name='id']"/>
             </xsl:attribute>
             <dcterms:title>
                 <xsl:choose>
@@ -61,6 +60,9 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </dcterms:title>
+            <dcterms:description>
+                <xsl:value-of select="str[@name='description']"/>
+            </dcterms:description>
             <foaf:homepage>
                 <xsl:attribute name="rdf:resource">
                     <xsl:value-of select="$url"/><xsl:value-of select="int[@name='id']"/>
@@ -68,7 +70,7 @@
             </foaf:homepage>
             <xsl:choose>
                 <xsl:when test="int[@name='thumbnail']">
-                    <foaf:thumbnail>http://finds.org.uk/images/thumbnails/<xsl:value-of
+                    <foaf:thumbnail><xsl:value-of select="$thumbnail" /><xsl:value-of
                             select="int[@name='thumbnail']"/>.jpg
                     </foaf:thumbnail>
                 </xsl:when>
@@ -76,7 +78,7 @@
         </pelagios:AnnotatedThing>
         <oa:Annotation>
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$base"/>#<xsl:value-of select="int[@name='id']"/>/annotation/001
+                <xsl:value-of select="$base"/>#<xsl:value-of select="int[@name='id']"/>/annotations/001
             </xsl:attribute>
             <xsl:for-each select="int[@name='pleiadesID']">
                 <oa:hasBody rdf:resource="http://pleiades.stoa.org/places/{.}#this"/>
@@ -92,7 +94,7 @@
                     <xsl:value-of select="$base"/>#agents/me
                 </xsl:attribute>
             </oa:annotatedBy>
-            <oa:annotatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"><xsl:value-of select="str[@name='created']"</oa:annotatedAt>
+            <oa:annotatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"><xsl:value-of select="date[@name='created']"/></oa:annotatedAt>
         </oa:Annotation>
     </xsl:template>
 </xsl:stylesheet>
