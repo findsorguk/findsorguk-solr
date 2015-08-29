@@ -698,6 +698,7 @@
         <field name="regionID" type="int" indexed="true" stored="true"/>
         <field name="woeid" type="int" indexed="true" stored="true"/>
         <field name="geonamesID" type="int" indexed="true" stored="true"/>
+        <field name="what3words" type="string" indexed="true" stored="true" />
 
         <!-- Hoard specific fields -->
         <field name="lastRulerID" type="int" indexed="true" stored="true" />
