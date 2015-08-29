@@ -31,6 +31,7 @@
         findspots.fourFigureLon,
         findspots.gridlen AS 'precision',
         findspots.accuracy,
+        findspots.what3words,
         maporigins.term AS gridSource,
         CONCAT(declat,',',declong) AS coordinates,
         finds.institution,
@@ -496,6 +497,7 @@
             <field column="districtType" name="districtType"/>
             <field column="parishType" name="parishType"/>
             <field column="geonamesID" name="geonamesID"/>
+            <field column="what3words" name="what3words"/>
 
             <!-- Period linked data identifiers -->
             <field column="periodFromEH" name="periodFromEH"/>
@@ -580,6 +582,7 @@
         findspots.gridlen AS 'precision',
         findspots.accuracy,
         maporigins.term AS gridSource,
+        findspots.what3words,
         CONCAT(declat,',',declong) AS coordinates,
         findspots.old_findspotid AS findspotcode,
         findspots.countyID,
@@ -840,6 +843,7 @@
             <field column="districtType" name="districtType"/>
             <field column="parishType" name="parishType"/>
             <field column="geonamesID" name="geonamesID"/>
+            <field column="what3words" name="what3words"/>
 
             <!-- Period linked data identifiers -->
             <field column="periodFromEH" name="periodFromEH"/>
