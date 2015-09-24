@@ -736,9 +736,9 @@
         <field name="broadperiodEH" type="string" indexed="true" stored="true"/>
         <field name="broadperiodBM" type="int" indexed="true" stored="true"/>
         <field name="periodFromEH" type="string" indexed="true" stored="true"/>
-        <field name="periodFromBM" type="int" indexed="true" stored="true"/>
+        <field name="periodFromBM" type="string" indexed="true" stored="true"/>
         <field name="periodToEH" type="string" indexed="true" stored="true"/>
-        <field name="periodToBM" type="int" indexed="true" stored="true"/>
+        <field name="periodToBM" type="string" indexed="true" stored="true"/>
         <!-- catchall field, containing all other searchable text fields (implemented
              via copyField further on in this schema  -->
         <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
