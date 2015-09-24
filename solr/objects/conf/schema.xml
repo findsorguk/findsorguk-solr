@@ -734,7 +734,7 @@
 
         <!--  Period linked data -->
         <field name="broadperiodEH" type="string" indexed="true" stored="true"/>
-        <field name="broadperiodBM" type="int" indexed="true" stored="true"/>
+        <field name="broadperiodBM" type="string" indexed="true" stored="true"/>
         <field name="periodFromEH" type="string" indexed="true" stored="true"/>
         <field name="periodFromBM" type="string" indexed="true" stored="true"/>
         <field name="periodToEH" type="string" indexed="true" stored="true"/>
