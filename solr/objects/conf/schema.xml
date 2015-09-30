@@ -654,7 +654,7 @@
         <field name="3D" type="string" indexed="true" stored="true" />
 
         <!--  Linked data identifiers -->
-        <field name="bmCultureID" type="int" indexed="true" stored="true"/>
+        <field name="bmCultureID" type="string" indexed="true" stored="true"/>
 
         <!--  Person specific details -->
         <field name="finder" type="string" indexed="true" stored="true"/>
