@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<solr persistent="true" sharedLib="lib">
+    <cores defaultCoreName="objects" adminPath="/admin/cores" shareSchema="false" zkClientTimeout="${zkClientTimeout:15000}" hostPort="8080" hostContext="solr">
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/objects/" transient="false" name="objects" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/images/" transient="false" name="images" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/people/" transient="false" name="people" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/geodata/" transient="false" name="geodata" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/publications/" transient="false" name="publications" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/bibliography/" transient="false" name="bibliography" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/coinsummary/" transient="false" name="coinsummary" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/content/" transient="false" name="content" config="solrconfig.xml" dataDir="data"/>
+        <core schema="schema.xml" loadOnStartup="true" instanceDir="findsorguk/solr/tags/" transient="false" name="tags" config="solrconfig.xml" dataDir="data"/>
+    </cores>
+</solr>
