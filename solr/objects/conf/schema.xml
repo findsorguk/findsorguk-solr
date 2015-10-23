@@ -680,7 +680,7 @@
         <field name="nomismaMintID" type="string" indexed="true" stored="true"/>
         <field name="mintWoeid" type="int" indexed="true" stored="true"/>
         <field name="mintGeonamesID" type="int" indexed="true" stored="true"/>
-        <field name="mintBM" type="int" indexed="true" stored="true"/>
+        <field name="mintBM" type="string" indexed="true" stored="true"/>
         <field name="pleiadesID" type="int" indexed="true" stored="true"/>
         <field name="nomismaDenominationID" type="string" indexed="true" stored="true"/>
         <field name="denominationBM" type="int" indexed="true" stored="true"/>
