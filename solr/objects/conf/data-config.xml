@@ -7,7 +7,7 @@
                 password=""
                 tinyInt1isBit="false"/>
     <document name="content">
-        <entity name="artefacts" transformeriden="HTMLStripTransformer"
+        <entity name="artefacts" transformer="HTMLStripTransformer"
                 query="
         SELECT
         DISTINCT(finds.id) as id,
