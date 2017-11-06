@@ -4,3 +4,12 @@ README.txt
 demos/
 .idea/*
 extras/documentation
+solr/bibliography/conf/solrcore.properties
+solr/coinsummary/conf/solrcore.properties
+solr/content/conf/solrcore.properties
+solr/geodata/conf/solrcore.properties
+solr/images/conf/solrcore.properties
+solr/objects/conf/solrcore.properties
+solr/people/conf/solrcore.properties
+solr/publications/conf/solrcore.properties
+solr/tags/conf/solrcore.properties

@@ -2,9 +2,9 @@
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
                 batchSize="-1"
-                url="jdbc:mysql://localhost/{db}"
-                user=""
-                password=""
+                url="jdbc:mysql://localhost/${database}"
+                user="${username}"
+                password="{$password}"
                 tinyInt1isBit="false"/>
     <document name="content">
         <entity name="artefacts" transformer="HTMLStripTransformer"

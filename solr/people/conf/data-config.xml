@@ -1,9 +1,9 @@
 <dataConfig>
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://localhost/{db}"
-                user=""
-                password=""
+                url="jdbc:mysql://localhost/${database}"
+                user="${username}"
+                password="${password}"
                 tinyInt1isBit="false"/>
     <document name="content">
         <entity name="content" transformer="HTMLStripTransformer"

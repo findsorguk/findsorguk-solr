@@ -454,7 +454,7 @@
    -->
     <field name="_version_" type="long" indexed="true" stored="true" multiValued="false"/>
         <field name="identifier" type="string" indexed="true" stored="true" required="true" />
-    <field name="id" type="int" indexed="true" stored="true" required="true" />
+        <field name="id" type="int" indexed="true" stored="true" required="true" />
         <field name="title" type="string" indexed="true" stored="true" />
         <field name="keywords" type="string" indexed="true" stored="true" />
         <field name="woeid" type="int" indexed="true" stored="true" />
@@ -471,6 +471,7 @@
         <field name="updated" type="date" indexed="true" stored="true" />
         <field name="license" type="int" indexed="true" stored="true" />
         <field name="licenseAcronym" type="string" indexed="true" stored="true" />
+        <field name="imageRights" type="string" indexed="true" stored="true" />
         <field name="broadperiod" type="string" indexed="true" stored="true" />
         <field name="createdBy" type="int" indexed="true" stored="true" />
         <field name="workflow" type="int" indexed="true" stored="true" />
@@ -483,11 +484,11 @@
 
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
-   <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
+        <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
         <field name="objectType" type="string" indexed="true" stored="false" multiValued="false" />
    <!-- catchall text field that indexes tokens both normally and in reverse for efficient
         leading wildcard queries. -->
-   <field name="text_rev" type="text_rev" indexed="true" stored="false" multiValued="true"/>
+        <field name="text_rev" type="text_rev" indexed="true" stored="false" multiValued="true"/>
 
 
    <!-- Uncommenting the following will create a "timestamp" field using
@@ -563,6 +564,7 @@
         <copyField source="objecttype" dest="text" />
         <copyField source="old_findID" dest="text" />
         <copyField source="objecttype" dest="objectType" />
+        <copyField source="imageRights" dest="text" />
    <!-- Above, multiple source fields are copied to the [text] field.
           Another way to map multiple source fields to the same
           destination field is to use the dynamic field syntax.

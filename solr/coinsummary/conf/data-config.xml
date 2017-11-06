@@ -1,9 +1,9 @@
 <dataConfig>
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://127.0.0.1/antiquitiesTwo"
-                user="webuser2"
-                password="45jql11w"
+                url="jdbc:mysql://127.0.0.1/${database}"
+                user="${username}"
+                password="${password}"
                 batchSize="-1"
                 tinyInt1isBit="false"/>
     <document name="coinsummary">

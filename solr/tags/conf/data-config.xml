@@ -1,9 +1,9 @@
 <dataConfig>
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://localhost/{db}"
-                user="{user}"
-                password="{password}"
+                url="jdbc:mysql://localhost/${database}"
+                user="${username}"
+                password="${password}"
                 batchSize="-1"
                 tinyInt1isBit="false"/>
     <document name="semanticTags">
@@ -44,4 +44,3 @@
         </entity>
     </document>
 </dataConfig>
-

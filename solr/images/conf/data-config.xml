@@ -1,10 +1,10 @@
 <dataConfig>
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://localhost/{db}"
+                url="jdbc:mysql://localhost/${database}"
                 batchSize="-1"
-                user=""
-                password=""
+                user="${username}"
+                password="${password}"
                 tinyInt1isBit="false"/>
     <document name="content">
         <entity name="images" transformer="HTMLStripTransformer"
@@ -29,8 +29,9 @@ CONCAT( findspots.declat,  ',', findspots.declong ) AS coordinates,
 users.imagedir,
 users.fullname,
 licenseType.acronym AS licenseAcronym,
-licenseType.flickrID as license,
+licenseType.flickrID AS license,
 finds.objecttype,
+slides.imagerights AS imageRights,
 slides.institution,
 finds.secwfstage AS workflow,
 finds.objecttype
@@ -66,7 +67,7 @@ WHERE finds.secwfstage > 1
             <field column="institution" name="institution"/>
             <field column="workflow" name="workflow"/>
             <field column="objecttype" name="objecttype"/>
-
+            <field column="imageRights" name="imageRights"/>
         </entity>
 
     </document>
