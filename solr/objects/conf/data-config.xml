@@ -4,7 +4,7 @@
                 batchSize="-1"
                 url="jdbc:mysql://localhost/${database}"
                 user="${username}"
-                password="{$password}"
+                password="${password}"
                 tinyInt1isBit="false"/>
     <document name="content">
         <entity name="artefacts" transformer="HTMLStripTransformer"

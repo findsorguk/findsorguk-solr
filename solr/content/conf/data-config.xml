@@ -2,7 +2,7 @@
     <dataSource type="JdbcDataSource"
                 driver="com.mysql.jdbc.Driver"
                 url="jdbc:mysql://localhost/${database}"
-                user="{$username}"
+                user="${username}"
                 password="${password}"
                 tinyInt1isBit="false"
                 batchSize="-1"
