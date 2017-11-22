@@ -7,7 +7,7 @@
                 password="${password}"
                 tinyInt1isBit="false"/>
     <document name="content">
-        <entity name="images" transformer="HTMLStripTransformer"
+        <entity name="imagesFinds" transformer="HTMLStripTransformer"
                 query="
 SELECT
 CONCAT('images-',imageID) AS identifier,
@@ -30,11 +30,11 @@ users.imagedir,
 users.fullname,
 licenseType.acronym AS licenseAcronym,
 licenseType.flickrID AS license,
-finds.objecttype,
 slides.imagerights AS imageRights,
 slides.institution,
 finds.secwfstage AS workflow,
-finds.objecttype
+finds.objecttype,
+'artefacts' AS recordtype
 FROM slides
 LEFT JOIN periods ON slides.period = periods.id
 LEFT JOIN finds_images ON finds_images.image_id = slides.secuid
@@ -68,7 +68,70 @@ WHERE finds.secwfstage > 1
             <field column="workflow" name="workflow"/>
             <field column="objecttype" name="objecttype"/>
             <field column="imageRights" name="imageRights"/>
+            <field column="recordtype" name="recordtype"/>
         </entity>
-
+        <entity name="imagesHoards" transformer="HTMLStripTransformer"
+                query="
+SELECT
+CONCAT('images-',imageID) AS identifier,
+imageID AS id,
+label AS title,
+filename,
+keywords,
+findspots.county,
+slides.createdBy,
+slides.created,
+slides.updated,
+hoardID AS old_findID,
+hoards.id AS findID,
+periods.term AS broadperiod,
+findspots.declat AS latitude,
+findspots.declong AS longitude,
+findspots.woeid,
+CONCAT( findspots.declat,  ',', findspots.declong ) AS coordinates,
+users.imagedir,
+users.fullname,
+licenseType.acronym AS licenseAcronym,
+licenseType.flickrID AS license,
+'HOARD' AS objecttype,
+slides.imagerights AS imageRights,
+slides.institution,
+hoards.secwfstage AS workflow,
+'hoards' AS recordtype
+FROM slides
+LEFT JOIN periods ON slides.period = periods.id
+LEFT JOIN finds_images ON finds_images.image_id = slides.secuid
+LEFT JOIN hoards ON finds_images.find_id = hoards.secuid
+LEFT JOIN findspots ON hoards.secuid = findspots.findID
+LEFT JOIN users ON slides.createdBy = users.id
+LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
+WHERE hoards.secwfstage > 1
+"
+                >
+            <field column="identifier" name="identifier"/>
+            <field column="id" name="id"/>
+            <field column="filename" name="filename"/>
+            <field column="county" name="county"/>
+            <field column="old_findID" name="old_findID"/>
+            <field column="findID" name="findID"/>
+            <field column="coordinates" name="coordinates"/>
+            <field column="latitude" name="latitude"/>
+            <field column="longitude" name="longitude"/>
+            <field column="keywords" name="keywords"/>
+            <field column="created" name="created"/>
+            <field column="updated" name="updated"/>
+            <field column="woeid" name="woeid"/>
+            <field column="fullname" name="fullname"/>
+            <field column="imagedir" name="imagedir"/>
+            <field column="license" name="license"/>
+            <field column="licenseAcronym" name="licenseAcronym"/>
+            <field column="broadperiod" name="broadperiod"/>
+            <field column="createdBy" name="createdBy"/>
+            <field column="institution" name="institution"/>
+            <field column="workflow" name="workflow"/>
+            <field column="objecttype" name="objecttype"/>
+            <field column="imageRights" name="imageRights"/>
+            <field column="recordtype" name="recordtype"/>
+        </entity>
     </document>
 </dataConfig>
