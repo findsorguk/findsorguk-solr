@@ -68,7 +68,7 @@
         manufactures.bmID AS bmManufacture,
         surftreatments.term AS treatment,
         surftreatments.bmID AS bmTreatment,
-        finds.surftreat AS treatment,
+        finds.surftreat AS surface,
         finds.preservation,
         preservations.term AS preservationTerm,
         preservations.bmID AS bmPreservation,
@@ -193,7 +193,6 @@
         jettonGroup.groupName AS jettonGroup,
         jettonTypes.typeName AS jettonType,
         jettonClasses.className aS jettonClass,
-        finds.surftreat AS surface,
         finds.objecttypecert AS objectCertaintyID,
         cert1.term AS objectCertainty,
         finds.numdate1qual AS dateFromQualifierID,
@@ -334,7 +333,7 @@
             <field column="manufacture" name="manufacture"/>
             <field column="manufactureTerm" name="manufactureTerm"/>
             <field column="bmManufacture" name="bmManufacture"/>
-            <field column="surface" name="treatment"/>
+            <field column="surface" name="surface"/>
             <field column="treatment" name="treatment"/>
             <field column="treatmentTerm" name="treatmentTerm"/>
             <field column="bmTreatment" name="bmTreatment"/>
