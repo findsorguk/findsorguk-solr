@@ -471,6 +471,7 @@
         <field name="findIdentifier" type="string" indexed="true" stored="true" required="true"/>
         <field name="id" type="int" indexed="true" stored="true" required="true"/>
         <field name="old_findID" type="string" indexed="true" stored="true"/>
+        <field name="hoardID" type="string" indexed="true" stored="true"/>
         <field name="secuid" type="string" indexed="true" stored="true"/>
 
         <!--  Spatial metadata -->
@@ -817,6 +818,7 @@
     <!-- Object meta data -->
 
     <copyField source="old_findID" dest="text"/>
+    <copyField source="hoardID" dest="text"/>
     <copyField source="notes" dest="text"/>
     <copyField source="description" dest="text"/>
     <copyField source="broadperiod" dest="text"/>
