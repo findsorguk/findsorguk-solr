@@ -516,6 +516,7 @@
         hoards.secuid,
         'HOARD' AS objecttype,
         hoards.hoardID AS old_findID,
+        hoards.hoardID,
         hoards.broadperiod,
         hoards.institution,
         hoards.description,
@@ -647,6 +648,7 @@
             <field column="findIdentifier" name="findIdentifier"/>
             <field column="id" name="id"/>
             <field column="old_findID" name="old_findID"/>
+            <field column="hoardID" name="hoardID"/>
             <field column="secuid" name="secuid"/>
 
             <!--  Spatial metadata -->
