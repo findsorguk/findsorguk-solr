@@ -4,6 +4,7 @@
                 xmlns:dcterms="http://purl.org/dc/terms/"
                 xmlns:fn="http://www.w3.org/2005/xpath-functions"
                 xmlns:owl="http://www.w3.org/2002/07/owl#"
+		xmlns:java="http://xml.apache.org/xalan/java"
                 xmlns:foaf="http://xmlns.com/foaf/0.1/"
                 xmlns:nm="http://nomisma.org/id/"
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -13,7 +14,6 @@
                 xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
         >
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
-
 
     <xsl:param name="url">
         <xsl:value-of select="'https://finds.org.uk/database/artefacts/record/id/'"/>
@@ -30,7 +30,6 @@
     <xsl:param name="dump">
         <xsl:value-of select="'https://finds.org.uk/rdf/pelagios.rdf'"/>
     </xsl:param>
-
 
     <foaf:Organization>
         <xsl:attribute name="rdf:about">
@@ -77,7 +76,11 @@
             </xsl:choose>
             <xsl:choose>
                 <xsl:when test="str[@name='filename']">
-                    <foaf:depiction><xsl:value-of select="$base"/><xsl:value-of select="str[@name='imagedir']"/><xsl:value-of select="encode-for-uri(str[@name='filename'])"/></foaf:depiction>
+                    <foaf:depiction>
+			<xsl:value-of select="$base"/>
+			<xsl:value-of select="str[@name='imagedir']"/>
+			<xsl:value-of select="java:java.net.URLEncoder.encode(str[@name='filename'], 'UTF-8')"/>
+		    </foaf:depiction>
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
@@ -100,16 +103,16 @@
             <xsl:attribute name="rdf:about">
                 <xsl:value-of select="$base"/>#<xsl:value-of select="int[@name='id']"/>/annotations/001</xsl:attribute>
             <xsl:for-each select="int[@name='pleiadesID']">
-                <oa:hasBody rdf:resource="http://pleiades.stoa.org/places/{.}#this"/>
+                <oa:hasBody rdf:resource="https://pleiades.stoa.org/places/{.}#this"/>
             </xsl:for-each>
             <oa:hasTarget>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$url"/><xsl:value-of select="int[@name='id']"/></xsl:attribute>
             </oa:hasTarget>
-            <pelagios:relation rdf:resource="http://pelagios.github.io/vocab/relations#attestsTo"/>
+            <pelagios:relation rdf:resource="https://pelagios.github.io/vocab/relations#attestsTo"/>
             <oa:annotatedBy>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$base"/>#agents/me</xsl:attribute>
             </oa:annotatedBy>
-            <oa:annotatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">
+            <oa:annotatedAt rdf:datatype="https://www.w3.org/2001/XMLSchema#dateTime">
                 <xsl:value-of select="date[@name='created']"/>
             </oa:annotatedAt>
         </oa:Annotation>
