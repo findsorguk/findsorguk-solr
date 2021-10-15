@@ -3,7 +3,7 @@
         LINUX sharedLib="/var/solr/lib" -->
 <solr persistent="true" sharedLib="/usr/local/apache-tomcat-7.0.55/lib">
     <cores defaultCoreName="objects" adminPath="/admin/cores" shareSchema="false"
-           zkClientTimeout="${zkClientTimeout:15000}" hostPort="8080" hostContext="solr">
+           zkClientTimeout="${zkClientTimeout:30000}" hostPort="8080" hostContext="solr">
         <core loadOnStartup="true" instanceDir="objects/" transient="false" name="objects" dataDir="data"/>
         <core schema="schema.xml" loadOnStartup="true" instanceDir="images/" transient="false" name="images"
               config="solrconfig.xml" dataDir="data"/>
