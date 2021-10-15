@@ -5,7 +5,8 @@
                 url="jdbc:mysql://localhost/${database}"
                 user="${username}"
                 password="${password}"
-                tinyInt1isBit="false"/>
+                tinyInt1isBit="false"
+		/>
     <document name="content">
         <entity name="artefacts" transformer="HTMLStripTransformer"
                 query="
@@ -66,9 +67,9 @@
         finds.manmethod AS manufacture,
         manufactures.term AS manufactureTerm,
         manufactures.bmID AS bmManufacture,
-        surftreatments.term AS treatment,
+        surftreatments.term AS treatmentTerm,
         surftreatments.bmID AS bmTreatment,
-        finds.surftreat AS surface,
+        finds.surftreat AS treatment,
         finds.preservation,
         preservations.term AS preservationTerm,
         preservations.bmID AS bmPreservation,
@@ -193,6 +194,7 @@
         jettonGroup.groupName AS jettonGroup,
         jettonTypes.typeName AS jettonType,
         jettonClasses.className aS jettonClass,
+        finds.surftreat AS surface,
         finds.objecttypecert AS objectCertaintyID,
         cert1.term AS objectCertainty,
         finds.numdate1qual AS dateFromQualifierID,
@@ -272,7 +274,7 @@
         LEFT JOIN certaintytypes AS cert6 ON coins.denomination_qualifier = cert6.id
         LEFT JOIN datequalifiers AS dateCert1 ON finds.numdate1qual = dateCert1.id
         LEFT JOIN datequalifiers AS dateCert2 ON finds.numdate2qual = dateCert2.id
-
+        
         ">
             <!--  Identifiers -->
             <field column="findIdentifier" name="findIdentifier"/>
@@ -333,7 +335,7 @@
             <field column="manufacture" name="manufacture"/>
             <field column="manufactureTerm" name="manufactureTerm"/>
             <field column="bmManufacture" name="bmManufacture"/>
-            <field column="surface" name="surface"/>
+            
             <field column="treatment" name="treatment"/>
             <field column="treatmentTerm" name="treatmentTerm"/>
             <field column="bmTreatment" name="bmTreatment"/>
@@ -482,7 +484,7 @@
             <field column="pleiadesID" name="pleiadesID"/>
 
             <!--  Denomination linked data -->
-            <field column="nomismaDenominationID" name="nomismaDenomination"/>
+            
             <field column="denominationBM" name="denominationBM"/>
             <field column="denominationDbpedia" name="denominationDbpedia"/>
 
@@ -502,9 +504,28 @@
             <field column="periodFromEH" name="periodFromEH"/>
             <field column="periodFromBM" name="periodFromBM"/>
             <field column="periodToEH" name="periodToEH"/>
-            <field column="periodFromBM" name="periodFromBM"/>
+            
             <field column="broadperiodEH" name="broadperiodEH"/>
             <field column="broadperiodBM" name="broadperiodBM"/>
+
+            <!-- FIXES BY SMOON FEB 2018 -->
+
+            <field column="imageCopyright" name="imageCopyright"/>
+            
+            <field column="periodToBM" name="periodToBM"/>
+            <!-- field column="periodFromBM" name="periodFromBM"/-->
+
+            <field column="surface" name="surface"/>
+            <!--field column="surface" name="treatment"/-->
+
+            <field column="nomismaDenominationID" name="nomismaDenominationID"/>
+            <!--field column="nomismaDenominationID" name="nomismaDenomination"/-->
+
+            <!-- IN SQL -->
+            <!-- surftreatments.term AS treatment, became:
+                 surftreatments.term AS treatmentTerm, -->
+
+            <!-- FIXES BY SMOON FEB 2018 -->
 
         </entity>
         <entity name="hoards" transformer="HTMLStripTransformer"
@@ -515,7 +536,6 @@
         hoards.secuid,
         'HOARD' AS objecttype,
         hoards.hoardID AS old_findID,
-        hoards.hoardID,
         hoards.broadperiod,
         hoards.institution,
         hoards.description,
@@ -642,12 +662,12 @@
         LEFT JOIN archsitetype ON archaeology.sitetype = archsitetype.id
         LEFT JOIN archfeature ON archaeology.feature = archfeature.id
         LEFT JOIN sketchFab ON hoards.secuid = sketchFab.findID
+        
         ">
             <!--  Identifiers -->
             <field column="findIdentifier" name="findIdentifier"/>
             <field column="id" name="id"/>
             <field column="old_findID" name="old_findID"/>
-            <field column="hoardID" name="hoardID"/>
             <field column="secuid" name="secuid"/>
 
             <!--  Spatial metadata -->
@@ -830,7 +850,7 @@
             <field column="pleiadesID" name="pleiadesID"/>
 
             <!--  Denomination linked data -->
-            <field column="nomismaDenominationID" name="nomismaDenomination"/>
+            <field column="nomismaDenominationID" name="nomismaDenominationID"/>
             <field column="denominationBM" name="denominationBM"/>
             <field column="denominationDbpedia" name="denominationDbpedia"/>
 
@@ -889,3 +909,4 @@
 
     </document>
 </dataConfig>
+
